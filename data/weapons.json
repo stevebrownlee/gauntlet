@@ -1,0 +1,140 @@
+{
+  "weapons": [
+    {
+      "id": "ShortSword",
+      "label": "Short Sword",
+      "base_damage": 6,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 1
+    },
+    {
+      "id": "LightSaber",
+      "label": "Light Saber",
+      "base_damage": 16,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 2
+    },
+    {
+      "id": "Staff",
+      "label": "Staff",
+      "base_damage": 6,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 2
+    },
+    {
+      "id": "Nunchaku",
+      "label": "Nunchaku",
+      "base_damage": 6,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 2
+    },
+    {
+      "id": "ShortBow",
+      "label": "Short Bow",
+      "base_damage": 6,
+      "poisoned": false,
+      "ranged": true,
+      "hands": 2
+    },
+    {
+      "id": "Halberd",
+      "label": "Halberd",
+      "base_damage": 12,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 2
+    },
+    {
+      "id": "BroadSword",
+      "label": "Broad Sword",
+      "base_damage": 8,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 1
+    },
+    {
+      "id": "WarAxe",
+      "label": "War Axe",
+      "base_damage": 10,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 2
+    },
+    {
+      "id": "LongSword",
+      "label": "Long Sword",
+      "base_damage": 8,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 2
+    },
+    {
+      "id": "Mace",
+      "label": "Mace",
+      "base_damage": 6,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 1
+    },
+    {
+      "id": "BallChain",
+      "label": "Ball and Chain",
+      "base_damage": 8,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 1
+    },
+    {
+      "id": "Rapier",
+      "label": "Rapier",
+      "base_damage": 8,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 1
+    },
+    {
+      "id": "Dagger",
+      "label": "Dagger",
+      "base_damage": 4,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 1
+    },
+    {
+      "id": "Dirk",
+      "label": "Dirk",
+      "base_damage": 3,
+      "poisoned": false,
+      "ranged": false,
+      "hands": 1
+    },
+    {
+      "id": "Dart",
+      "label": "Dart",
+      "base_damage": 3,
+      "poisoned": false,
+      "ranged": true,
+      "hands": 1
+    },
+    {
+      "id": "LongBow",
+      "label": "Long Bow",
+      "base_damage": 10,
+      "poisoned": false,
+      "ranged": true,
+      "hands": 1
+    },
+    {
+      "id": "PoisonBlowgun",
+      "label": "Poisoned Blowgun",
+      "base_damage": 4,
+      "poisoned": true,
+      "ranged": true,
+      "hands": 1
+    }
+  ]
+}

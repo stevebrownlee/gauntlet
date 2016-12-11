@@ -1,0 +1,139 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Gauntlet</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./styles/gauntlet.css">
+</head>
+
+<body>
+
+  <article id="game-container">
+
+    <section id="player-setup" class="card card--name">
+      <div class="card__prompt">
+        <div>RECORD YOUR NAME, ADVENTURER</div>
+        <div class="field">
+          <input type="text" autofocus="true" id="player-name" class="field__textinput">
+        </div>
+      </div>
+
+      <div class="card__button">
+        <a class="card__link btn btn--big btn--orange"
+           href="#"
+           current="card--name"
+           next="card--class">
+          <span class="btn__prompt">></span>
+          <span class="btn__text">Select class</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="class-select" class="card card--class">
+      <div class="card__prompt">
+        <div>CHOOSE YOUR PATH</div>
+        <div>
+          <a class="card__back btn btn--small"
+             href="#"
+             previous="card--name">
+            <span class="btn__prompt">&lt;</span>
+            <span class="btn__text">Back</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Warrior</span></a></div>
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Valkyrie</span></a></div>
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Berserker</span></a></div>
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Monk</span></a></div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Wizard</span></a></div>
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Sorcerer</span></a></div>
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Conjurer</span></a></div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Thief</span></a></div>
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Ninja</span></a></div>
+            <div class="card__button"><a class="class__link btn btn--big btn--blue" href="#"><span class="btn__prompt">&gt;</span><span class="btn__text">Assassin</span></a></div>
+
+            <div class="card__button">
+              <a class="class__link btn btn--big btn--yellow" href="#">
+                <span class="btn__prompt">&gt;</span>
+                <span class="btn__text">random</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card__button">
+        <a class="card__link btn btn--big btn--orange"
+           href="#"
+           current="card--class"
+           next="card--weapon">
+          <span class="btn__prompt">&gt;</span>
+          <span class="btn__text">Select weapon</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="weapon-select" class="card card--weapon">
+      <div class="card__prompt">
+        <div>choose your weapon</div>
+        <div>
+          <a class="card__back btn btn--small"
+             href="#"
+             previous="card--class">
+            <span class="btn__prompt">&lt;</span>
+            <span class="btn__text">Back</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card__button">
+        <a class="card__link btn btn--big btn--orange"
+           href="#"
+           current="card--weapon"
+           next="card--battleground">
+          <span class="btn__prompt">&gt;</span>
+          <span class="btn__text">defeat your enemies</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="battleground" class="card card--battleground">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="battle--human"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class="battle--enemy"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" id="battle-record"></div>
+      </div>
+    </section>
+
+  </article>
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="./javascripts/Gauntlet.js"></script>
+  <script src="./javascripts/util.js"></script>
+  <script src="./javascripts/weapons.js"></script>
+  <script src="./javascripts/spells.js"></script>
+  <script src="./javascripts/classes.js"></script>
+  <script src="./javascripts/player.js"></script>
+  <script src="./javascripts/horde.js"></script>
+  <script src="./javascripts/battleground.js"></script>
+  <script src="./javascripts/app-await.js"></script>
+
+</body>
+</html>

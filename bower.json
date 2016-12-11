@@ -1,0 +1,22 @@
+{
+  "name": "gauntlet",
+  "homepage": "https://github.com/nashville-software-school/gauntlet",
+  "authors": [
+    "Steve Brownlee <chortlehoort@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
