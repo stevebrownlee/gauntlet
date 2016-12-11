@@ -58,7 +58,7 @@ var Gauntlet = function ($$gauntlet) {
           $.ajax({url: "./data/spells.json"}).done(response => {
 
             // Iterate all weapon objects in the JSON file
-            response.spells.each(currentSpell =>
+            JSON.parse(response).spells.each(currentSpell =>
               spell_list.push(__.compose(MasterSpell, currentSpell))
             );
 

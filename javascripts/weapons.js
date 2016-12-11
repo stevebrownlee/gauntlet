@@ -52,7 +52,7 @@ var Gauntlet = function ($$gauntlet) {
         return new Promise((resolve, reject) => {
           $.ajax({url: "./data/weapons.json"}).done(response => {
             // Iterate all weapon objects in the JSON file
-            response.weapons.each(weapon =>
+            JSON.parse(response).weapons.each(weapon =>
               weapon_list.push(
                 __.compose(Weapon, weapon))
               );

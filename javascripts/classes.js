@@ -14,7 +14,7 @@ var Gauntlet = function ($$gauntlet) {
           $.ajax({url: "./data/classes.json"}).done(response => {
 
             // Iterate over all the class objects in the JSON file
-            response.classes.each(current_class => {
+            JSON.parse(response).classes.each(current_class => {
 
               // Define the prototype for the new profession
               let prototype_for_object = current_class.prototype === null

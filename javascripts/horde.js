@@ -38,7 +38,7 @@ var Gauntlet = function ($$gauntlet) {
             /*
               Load the names array in the JSON file into a Set
              */
-            response.names.each(name => {
+            JSON.parse(response).names.each(name => {
               names.add(name);
             });
 
@@ -48,7 +48,7 @@ var Gauntlet = function ($$gauntlet) {
               since all specific enemies inherit from Monster at
               this point.
              */
-            response.classes.each(monster => {
+            JSON.parse(response).classes.each(monster => {
               let object_prototype;
 
               // The base monster will always have Player as its prototype
