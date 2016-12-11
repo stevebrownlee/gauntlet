@@ -124,7 +124,11 @@
     </section>
 
   </article>
-  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    window.$ = window.jQuery = require(__dirname+'/bower_components/jquery/dist/jquery.min.js');
+  </script>
+
   <script src="./javascripts/Gauntlet.js"></script>
   <script src="./javascripts/util.js"></script>
   <script src="./javascripts/weapons.js"></script>
@@ -133,7 +137,7 @@
   <script src="./javascripts/player.js"></script>
   <script src="./javascripts/horde.js"></script>
   <script src="./javascripts/battleground.js"></script>
-  <script src="./javascripts/app-await.js"></script>
+  <script src="./javascripts/app.js"></script>
 
 </body>
 </html>
