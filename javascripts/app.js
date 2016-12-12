@@ -77,7 +77,7 @@ $(document).ready(function() {
 
     if (chosenProfession.magical) {
       HumanCombatant.equip(chosenProfession);
-      nextCard = "card--battleground";
+      $(".card--battleground").show();
       startCombat();
     } else {
       let weaponEl = $("#weapon-select").children(".card__prompt");
@@ -106,9 +106,9 @@ $(document).ready(function() {
       });
       block.push("</div></div>");
       weaponEl.append(block.join(""));
+      $(".card--weapon").show();
     }
 
-    $(".card--weapon").show();
   });
 
 

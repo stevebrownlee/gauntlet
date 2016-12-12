@@ -2,7 +2,7 @@
 
 /*
   Use promises to load, in the correct order, the JSON files
-  needed to establish all the prototype chains needed.
+  needed to establish all the prototype chains.
  */
 (async () => {
   await Gauntlet.WeaponRack.load();
@@ -42,7 +42,7 @@
       }
     }, 2000);
   }
-});
+}).catch(console.error);
 
 $(document).ready(function() {
 
@@ -78,7 +78,7 @@ $(document).ready(function() {
 
     if (chosenProfession.magical) {
       HumanCombatant.equip(chosenProfession);
-      nextCard = "card--battleground";
+      $(".card--battleground").show();
       startCombat();
     } else {
       let weaponEl = $("#weapon-select").children(".card__prompt");
@@ -107,9 +107,9 @@ $(document).ready(function() {
       });
       block.push("</div></div>");
       weaponEl.append(block.join(""));
+      $(".card--weapon").show();
     }
 
-    $(".card--weapon").show();
   });
 
 
@@ -192,6 +192,5 @@ $(document).ready(function() {
     $(".card").hide();
     $(`.${previousCard}`).show();
   });
-
 
 });

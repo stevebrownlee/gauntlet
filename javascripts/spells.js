@@ -42,36 +42,36 @@ var Gauntlet = function ($$gauntlet) {
   };
 
   // Spellbook will hold all defined weapons
-  $$gauntlet.Spellbook = function () {
+  $$gauntlet.Spellbook = (() => {
     let spell_list = [];
+    let _internal = Object.create(null);
 
-    return {
+    // Method to return the entire collection of spells
+    _internal.spells = () => {
+      return spell_list;
+    };
 
-      // Method to return the entire collection of spells
-      spells () {
-        return spell_list;
-      },
+    // Method to load the spells from the JSON file
+    _internal.load = () => {
+      return new Promise((resolve, reject) => {
+        $.ajax({url: "./data/spells.json"}).done(response => {
 
-      // Method to load the spells from the JSON file
-      load () {
-        return new Promise((resolve, reject) => {
-          $.ajax({url: "./data/spells.json"}).done(response => {
+          // Iterate all weapon objects in the JSON file
+          response.spells.each(currentSpell =>
+            spell_list.push(__.compose(MasterSpell, currentSpell))
+          );
 
-            // Iterate all weapon objects in the JSON file
-            response.spells.each(currentSpell =>
-              spell_list.push(__.compose(MasterSpell, currentSpell))
-            );
+          // Resolve the weapon loading promise with the weapon list
+          resolve(spell_list);
 
-            // Resolve the weapon loading promise with the weapon list
-            resolve(spell_list);
-
-          }).fail((xhr, error, msg) => {
-            reject(msg);
-          });
+        }).fail((xhr, error, msg) => {
+          reject(msg);
         });
-      }
-    }
-  }();
+      });
+    };
+
+    return _internal;
+  })();
 
   return $$gauntlet;
 

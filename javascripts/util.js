@@ -63,17 +63,14 @@ const __ = (() => {
 // CAUTION: Extend native prototypes only if you understand the consequences
 (() => {
 
-  // Add a `listen()` method on any EventTarget proxies to `addEventListener`
+  // Add a `listen()` method on any EventTarget. Proxies to `addEventListener`.
   if (!("listen" in EventTarget.prototype)) {
     Object.defineProperty(EventTarget.prototype, "listen", {
       value: new Proxy(EventTarget.prototype.addEventListener, {
         apply: function (_target, _this, _args) {
           return _target.apply(_this, _args);
         }
-      }),
-      writable: false,
-      enumerable: false,
-      configurable: false
+      })
     });
   }
 
@@ -84,10 +81,7 @@ const __ = (() => {
         apply: function (_target, _this, _args) {
           return _target.apply(_this, _args);
         }
-      }),
-      writable: false,
-      enumerable: false,
-      configurable: false
+      })
     });
   }
 

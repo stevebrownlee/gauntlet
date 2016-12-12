@@ -4,45 +4,47 @@ var Gauntlet = function ($$gauntlet) {
 
   $$gauntlet.GuildHall = function () {
     let all_professions = new Map();
+    let guildHall = Object.create(null);
 
-    return {
-      classes () {
-        return all_professions;
-      },
-      load (callBack) {
-        return new Promise((resolve, reject) => {
-          $.ajax({url: "./data/classes.json"}).done(response => {
+    guildHall.classes = () => {
+      return all_professions;
+    };
 
-            // Iterate over all the class objects in the JSON file
-            response.classes.each(current_class => {
+    guildHall.load = () => {
+      return new Promise((resolve, reject) => {
+        $.ajax({url: "./data/classes.json"}).done(response => {
 
-              // Define the prototype for the new profession
-              let prototype_for_object = current_class.prototype === null
-                                          ? {}
-                                          : all_professions.get(current_class.prototype);
+          // Iterate over all the class objects in the JSON file
+          response.classes.each(current_class => {
 
-              // Create the new profession
-              let profession = __.compose(prototype_for_object,
-                                          current_class,
-                                          ObjectExtensions);
+            // Define the prototype for the new profession
+            let prototype_for_object = current_class.prototype === null
+                                        ? {}
+                                        : all_professions.get(current_class.prototype);
 
-              // Add a toString() method to each class which displays the label
-              profession.def("toString", () => current_class.label);
+            // Create the new profession
+            let profession = __.compose(prototype_for_object,
+                                        current_class,
+                                        ObjectExtensions);
 
-              // Add new profession to the Map
-              all_professions.set(current_class.id, profession);
-            });
+            // Add a toString() method to each class which displays the label
+            profession.def("toString", () => current_class.label);
 
-            // Resolve the promise
-            resolve();
-
-          }).fail((xhr, error, msg) => {
-            console.error(msg);
-            reject();
+            // Add new profession to the Map
+            all_professions.set(current_class.id, profession);
           });
+
+          // Resolve the promise
+          resolve();
+
+        }).fail((xhr, error, msg) => {
+          console.error(msg);
+          reject();
         });
-      }
-    }
+      });
+    };
+
+    return guildHall;
   }();
 
   return $$gauntlet;

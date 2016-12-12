@@ -1,7 +1,7 @@
 "use strict";
 
 var Gauntlet = function (gauntlet) {
-  let army = {};
+  let army = Object.create(null);
 
   /*
     Define the base object for any combatant of Gauntlet,
