@@ -6,7 +6,7 @@ const Battleground = function (human_combatant, enemy_combatant, console_output 
   this.console_output = console_output;
 };
 
-Battleground.prototype.melee = function() {
+Battleground.prototype.melee = function () {
   // Perform attack and return the string outcome
   const attack = (combatant, target) => {
     let result, modifier;

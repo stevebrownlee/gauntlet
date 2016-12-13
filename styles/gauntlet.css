@@ -1,7 +1,6 @@
 body {
   font-family: "Lato", "Helvetica", "sans-serif";
   margin: 0;
-  /*padding: 10px;*/
   font-size: 3em;
 }
 
@@ -16,12 +15,14 @@ body {
   min-width: 500px;
 }
 
-
+h1 {
+  font-size: 2em;
+}
 
 /*
   Section styles
  */
-.card { 
+.card {
   display: none;
 }
 

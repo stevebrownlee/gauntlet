@@ -49,7 +49,7 @@
     }
   }
   professionHTML += '</div>';
-  $(".professions--container").append(professionHTML);
+  $(".professions__container").append(professionHTML);
 
 
   /*
