@@ -7,7 +7,8 @@
       "strengthModifier": 0,
       "intelligenceModifier": 0,
       "magical": false,
-      "prototype": null
+      "prototype": null,
+      "playable": false
     },
     {
       "id": "Lord",
@@ -17,7 +18,8 @@
       "intelligenceModifier": 0,
       "magical": false,
       "prototype": "PlayerClass",
-      "allowedWeapons": ["LightSaber"]
+      "allowedWeapons": ["LightSaber"],
+      "playable": false
     },
     {
       "id": "Mage",
@@ -27,7 +29,8 @@
       "intelligenceModifier": 150,
       "magical": true,
       "prototype": "PlayerClass",
-      "allowedWeapons": []
+      "allowedWeapons": [],
+      "playable": false
     },
     {
       "id": "Shaman",
@@ -37,7 +40,8 @@
       "intelligenceModifier": 80,
       "magical": true,
       "prototype": "Mage",
-      "allowedWeapons": []
+      "allowedWeapons": [],
+      "playable": false
     },
     {
       "id": "Wizard",
@@ -47,7 +51,8 @@
       "intelligenceModifier": 100,
       "magical": true,
       "prototype": "Mage",
-      "allowedWeapons": []
+      "allowedWeapons": [],
+      "playable": true
     },
     {
       "id": "Conjurer",
@@ -57,7 +62,8 @@
       "intelligenceModifier": 90,
       "magical": true,
       "prototype": "Mage",
-      "allowedWeapons": []
+      "allowedWeapons": [],
+      "playable": true
     },
     {
       "id": "Sorcerer",
@@ -67,7 +73,8 @@
       "intelligenceModifier": 85,
       "magical": true,
       "prototype": "Mage",
-      "allowedWeapons": []
+      "allowedWeapons": [],
+      "playable": true
     },
     {
       "id": "Stealth",
@@ -76,7 +83,8 @@
       "strengthModifier": -10,
       "intelligenceModifier": 20,
       "prototype": "PlayerClass",
-      "allowedWeapons": ["Dagger", "Dart", "Dirk", "ShortSword"]
+      "allowedWeapons": ["Dagger", "Dart", "Dirk", "ShortSword"],
+      "playable": false
     },
     {
       "id": "Thief",
@@ -85,7 +93,8 @@
       "strengthModifier": -5,
       "intelligenceModifier": 50,
       "prototype": "Stealth",
-      "allowedWeapons": ["Dagger", "Dart", "Dirk", "ShortSword"]
+      "allowedWeapons": ["Dagger", "Dart", "Dirk", "ShortSword"],
+      "playable": true
     },
     {
       "id": "Ninja",
@@ -94,7 +103,8 @@
       "strengthModifier": 15,
       "intelligenceModifier": 40,
       "prototype": "Stealth",
-      "allowedWeapons": ["Dagger", "Dart", "Dirk", "ShortSword", "Rapier"]
+      "allowedWeapons": ["Dagger", "Dart", "Dirk", "ShortSword", "Rapier"],
+      "playable": true
     },
     {
       "id": "Assassin",
@@ -103,7 +113,8 @@
       "strengthModifier": -5,
       "intelligenceModifier": 100,
       "prototype": "Stealth",
-      "allowedWeapons": ["Dagger", "Dart", "ShortSword", "PoisonBlowgun"]
+      "allowedWeapons": ["Dagger", "Dart", "ShortSword", "PoisonBlowgun"],
+      "playable": true
     },
     {
       "id": "Fighter",
@@ -112,7 +123,8 @@
       "strengthModifier": 10,
       "intelligenceModifier": 0,
       "prototype": "PlayerClass",
-      "allowedWeapons": ["LongSword", "ShortSword", "BroadSword", "Dagger"]
+      "allowedWeapons": ["LongSword", "ShortSword", "BroadSword", "Dagger"],
+      "playable": false
     },
     {
       "id": "Warrior",
@@ -121,7 +133,8 @@
       "strengthModifier": 90,
       "intelligenceModifier": 0,
       "prototype": "Fighter",
-      "allowedWeapons": ["LongSword", "ShortSword", "BroadSword", "Dagger", "Halberd"]
+      "allowedWeapons": ["LongSword", "ShortSword", "BroadSword", "Dagger", "Halberd"],
+      "playable": true
     },
     {
       "id": "Valkyrie",
@@ -130,7 +143,8 @@
       "strengthModifier": 70,
       "intelligenceModifier": 0,
       "prototype": "Fighter",
-      "allowedWeapons": ["LongSword", "ShortSword", "BroadSword", "Dagger", "BallChain", "LongBow"]
+      "allowedWeapons": ["LongSword", "ShortSword", "BroadSword", "Dagger", "BallChain", "LongBow"],
+      "playable": true
     },
     {
       "id": "Berserker",
@@ -139,7 +153,8 @@
       "strengthModifier": 120,
       "intelligenceModifier": 0,
       "prototype": "Fighter",
-      "allowedWeapons": ["LongSword", "ShortSword", "BroadSword", "Dagger", "Mace", "WarAxe"]
+      "allowedWeapons": ["LongSword", "ShortSword", "BroadSword", "Dagger", "Mace", "WarAxe"],
+      "playable": true
     },
     {
       "id": "Monk",
@@ -148,7 +163,8 @@
       "strengthModifier": 100,
       "intelligenceModifier": 0,
       "prototype": "Fighter",
-      "allowedWeapons": ["ShortBow", "Staff", "Nunchaku"]
+      "allowedWeapons": ["ShortBow", "Staff", "Nunchaku"],
+      "playable": true
     }
   ]
 }

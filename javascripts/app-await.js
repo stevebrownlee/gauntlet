@@ -25,6 +25,33 @@
   console.log(enemy.toString());
   console.groupEnd("Sample Combatants");
 
+
+  // Populate the professions view
+  let cellTracker = 1;
+
+  let professionHTML = '<div class="row">';
+  for (let c of Gauntlet.GuildHall.classes().values()) {
+    if (c.playable) {
+      professionHTML += '<div class="col-sm-4">';
+      professionHTML += '  <div class="card__button">';
+      professionHTML += '    <a class="class__link btn btn--big btn--blue" href="#">';
+      professionHTML += '      <span class="btn__prompt">&gt;</span>';
+      professionHTML += `      <span class="btn__text">${c.label}</span>`;
+      professionHTML += '    </a>';
+      professionHTML += '  </div>';
+      professionHTML += '</div>';
+
+      if (cellTracker % 3 === 0) {
+        professionHTML += '</div>';
+        professionHTML += '<div class="row">';
+      }
+      cellTracker++;
+    }
+  }
+  professionHTML += '</div>';
+  $(".professions--container").append(professionHTML);
+
+
   /*
     To have a sample battle run in the console, without needing
     to select anything in the DOM application, just add console=true
@@ -72,7 +99,7 @@ $(document).ready(function() {
 
 
   // When user selects a profession, show the weapon view
-  $(".class__link").click(function (e) {
+  $(document).on("click", ".class__link", function(e) {
     chosenProfession = Gauntlet.GuildHall.classes().get($(this).children(".btn__text").html());
     $(".card").hide();
 
@@ -181,6 +208,7 @@ $(document).ready(function() {
     $(".card").hide();
     $("#player-setup").show();
     $("#battle-record").empty();
+    $("#player-name").focus();
   });
 
 

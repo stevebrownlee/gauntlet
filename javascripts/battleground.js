@@ -9,10 +9,10 @@ const Battleground = function (human_combatant, enemy_combatant, console_output 
 Battleground.prototype.melee = function() {
   // Perform attack and return the string outcome
   const attack = (combatant, target) => {
-    let result, spell, modifier;
+    let result, modifier;
 
     if (combatant.profession.magical) {
-      spell = Gauntlet.Spellbook.spells().random();
+      const spell = Gauntlet.Spellbook.spells().random();
       modifier = Math.floor(combatant.intelligence / 15);
       result = spell.read(modifier).cast().at((spell.defensive) ? combatant : target);
       result = `\n${combatant.name} cast ${result.spell} of ${result.element}\non ${(spell.defensive) ? combatant.name : target.name} for ${result.damage} ${result.effect}\n\n`;
