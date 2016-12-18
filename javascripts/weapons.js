@@ -18,6 +18,9 @@ var Gauntlet = function ($$gauntlet) {
       // Calculate base weapon damage
       let damage = Math.round(Math.random() * this.base_damage + 1);
 
+      // Calculate if a critical hit was made
+
+
       // Add strength modifier and reduce by target's armor
       damage += Math.round(this.strength_modifier - target.protection);
 
@@ -36,8 +39,8 @@ var Gauntlet = function ($$gauntlet) {
     toString () { return `${this.label}`; }
   };
 
-  // WeaponRack will hold all defined weapons
-  $$gauntlet.WeaponRack = function () {
+  // Armory will hold all defined weapons
+  $$gauntlet.Armory = function () {
     let weapon_list = [];
     let _internal = Object.create(null);
 

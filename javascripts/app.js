@@ -2,13 +2,14 @@
 
 /*
   Use promises to load, in the correct order, the JSON files
-  needed to establish all the prototype chains needed.
+  needed to establish all the prototype chains.
  */
-Gauntlet.WeaponRack.load()
-  .then(Gauntlet.Spellbook.load)
-  .then(Gauntlet.Horde.load)
-  .then(Gauntlet.GuildHall.load)
-  .then(() => {
+(async () => {
+  await Gauntlet.Armory.load();
+  await Gauntlet.Spellbook.load();
+  await Gauntlet.Horde.load();
+  await Gauntlet.GuildHall.load();
+})().then(() => {
 
   /*
     Test code to generate a human player and a random enemy
@@ -24,6 +25,33 @@ Gauntlet.WeaponRack.load()
   console.log(enemy.toString());
   console.groupEnd("Sample Combatants");
 
+
+  // Populate the professions view
+  let cellTracker = 1;
+
+  let professionHTML = '<div class="row">';
+  for (let c of Gauntlet.GuildHall.classes().values()) {
+    if (c.playable) {
+      professionHTML += '<div class="col-sm-4">';
+      professionHTML += '  <div class="card__button">';
+      professionHTML += '    <a class="class__link btn btn--big btn--blue" href="#">';
+      professionHTML += '      <span class="btn__prompt">&gt;</span>';
+      professionHTML += `      <span class="btn__text">${c.label}</span>`;
+      professionHTML += '    </a>';
+      professionHTML += '  </div>';
+      professionHTML += '</div>';
+
+      if (cellTracker % 3 === 0) {
+        professionHTML += '</div>';
+        professionHTML += '<div class="row">';
+      }
+      cellTracker++;
+    }
+  }
+  professionHTML += '</div>';
+  $(".professions__container").append(professionHTML);
+
+
   /*
     To have a sample battle run in the console, without needing
     to select anything in the DOM application, just add console=true
@@ -34,14 +62,14 @@ Gauntlet.WeaponRack.load()
 
    */
   if (__.getURLParameter("console") === "true") {
-    let battleground = new Battleground(warrior, enemy, true);
+    let battleground = Gauntlet.Battleground.init(warrior, enemy, true);
     let battleTimer = window.setInterval(() => {
       if (!battleground.melee()) {
         window.clearInterval(battleTimer);
       }
     }, 2000);
   }
-});
+}).catch(console.error);
 
 $(document).ready(function() {
 
@@ -71,7 +99,7 @@ $(document).ready(function() {
 
 
   // When user selects a profession, show the weapon view
-  $(".class__link").click(function (e) {
+  $(document).on("click", ".class__link", function(e) {
     chosenProfession = Gauntlet.GuildHall.classes().get($(this).children(".btn__text").html());
     $(".card").hide();
 
@@ -87,7 +115,7 @@ $(document).ready(function() {
                    '<div class="col-sm-6">'];
 
       chosenProfession.allowedWeapons.each((weapon, index) => {
-        let weaponName = Gauntlet.WeaponRack
+        let weaponName = Gauntlet.Armory
                                  .weapons()
                                  .find(w => w.id === weapon)
                                  .toString();
@@ -117,7 +145,7 @@ $(document).ready(function() {
    */
   $(document).on("click", ".weapon__link", function(e) {
     let weapon = $(this).find(".btn__text").attr("weapon");
-    chosenWeapon = Gauntlet.WeaponRack
+    chosenWeapon = Gauntlet.Armory
                              .weapons()
                              .find(w => w.id === weapon);
     HumanCombatant.equip(chosenProfession, chosenWeapon);
@@ -156,7 +184,7 @@ $(document).ready(function() {
     $(".battle--human").html(HumanCombatant.toString());
     $(".battle--enemy").html(EnemyCombatant.toString());
 
-    battleground = new Battleground(HumanCombatant, EnemyCombatant);
+    battleground = Gauntlet.Battleground.init(HumanCombatant, EnemyCombatant);
     battleTimer = window.setInterval(meleeRound, 2000);
   }
 
@@ -180,6 +208,7 @@ $(document).ready(function() {
     $(".card").hide();
     $("#player-setup").show();
     $("#battle-record").empty();
+    $("#player-name").focus();
   });
 
 
@@ -191,6 +220,5 @@ $(document).ready(function() {
     $(".card").hide();
     $(`.${previousCard}`).show();
   });
-
 
 });

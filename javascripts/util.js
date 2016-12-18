@@ -138,7 +138,7 @@ const help = (topic) => {
       case "w":
         console.clear();
         output += `Weapon              Base Dmg     Poison    Ranged\n====================================================\n`;
-        Gauntlet.WeaponRack.weapons().each(w => output += `${(w.label + " ".repeat(20)).slice(0, 20)}${(w.base_damage + " ".repeat(13)).slice(0,13)}${(w.poisoned + " ".repeat(6)).slice(0,10)}${w.ranged}\n`);
+        Gauntlet.Armory.weapons().each(w => output += `${(w.label + " ".repeat(20)).slice(0, 20)}${(w.base_damage + " ".repeat(13)).slice(0,13)}${(w.poisoned + " ".repeat(6)).slice(0,10)}${w.ranged}\n`);
         break;
 
 

@@ -8,12 +8,16 @@ Tread carefully, for there are devious, and deadly traps that will keep you ensn
 
 ---
 
-Load the project and type in the following commands, one at a time, in the developer console.
+## Tips
 
-```
-help('s');
-help('w');
-help('m');
-```
+* You may want to run this application in Chrome Canary or Firefox Developer Edition as it may be using cutting-edge language features that are not available in the production releases of Chrome and Firefox.
 
-If you want to run a battle directly in the developer tools console panel, just add `?console=true` to end of the URL.
+* Load the project and type in the following commands, one at a time, in the developer console.
+
+    ```
+    help('s');
+    help('w');
+    help('m');
+    ```
+
+* If you want to run a battle directly in the developer tools console panel, just add `?console=true` to end of the URL.

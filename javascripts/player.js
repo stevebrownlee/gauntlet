@@ -14,6 +14,7 @@ var Gauntlet = function (gauntlet) {
     .property("weapon", null)
     .property("name", null)
     .property("protection", 0)
+    .property("startingHealth", 0)
     .property("health", 0)
     .property("strength", 90)
     .property("intelligence", 90)
@@ -106,7 +107,7 @@ var Gauntlet = function (gauntlet) {
     .def("setWeapon", function(newWeapon) {
       try {
         if (this.profession && !this.profession.magical && !newWeapon) {
-          this.weapon = gauntlet.WeaponRack.weapons().random();
+          this.weapon = gauntlet.Armory.weapons().random();
         } else if (newWeapon) {
           this.weapon = newWeapon;
         }
