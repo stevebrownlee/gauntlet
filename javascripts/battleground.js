@@ -55,21 +55,21 @@ var Gauntlet = function ($$gauntlet) {
     const generateHealthBar = (target) => {
       let percentage = Math.floor(target.health / target.startingHealth * 20);
       if (percentage < 0) percentage = 0;
-      let healthBar = `[${'*'.repeat(percentage)}${' '.repeat(20 - percentage)}]`;
+      let healthBar = `%c[${'*'.repeat(percentage)}${' '.repeat(20 - percentage)}]`;
 
-      let consoleFn = null;
+      let barColor = null;
       switch (true)
       {
         case (percentage < 5):
-          consoleFn = console.error;
+          barColor = "tomato";
           break;
         case (percentage < 10):
-          consoleFn = console.warn;
+          barColor = "yellow";
           break;
         default:
-          consoleFn = console.log;
+          barColor = "slategrey";
       }
-      consoleFn(healthBar);
+      console.log(healthBar, `color:${barColor}; background-color:gainsboro;`);
     }
 
     /* Perform player action */
