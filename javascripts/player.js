@@ -18,7 +18,6 @@ var Gauntlet = function (gauntlet) {
     .property("health", 0)
     .property("strength", 90)
     .property("intelligence", 90)
-    .property("effects", [])
     .property("limbs", ["head", "neck", "arm", "leg", "torso"])
     .property("skinColor", "")
     .property("skinColors", ["gray"])

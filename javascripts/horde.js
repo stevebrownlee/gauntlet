@@ -4,7 +4,7 @@ var Gauntlet = function (global) {
 
   let _private = new WeakMap();
 
-  let _internal = function (object) {
+  const _internal = function (object) {
     if (!_private.has(object))
         _private.set(object, Object.create(null));
     return _private.get(object);
