@@ -7,7 +7,7 @@ var Gauntlet = function (gauntlet) {
     Define the base object for any combatant of Gauntlet,
     whether a human combatant or a monster.
    */
-  let combatant = army.Player = __.compose(Object.create(null), ObjectExtensions);
+  let combatant = army.Player = gutil.compose(Object.create(null), gutil.ObjectExtensions);
 
   combatant.property("species", null)
     .property("profession", null)

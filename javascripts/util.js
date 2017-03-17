@@ -1,14 +1,16 @@
 "use strict";
 
+let gutil = Object.create(null);
+
 /*
   This object allows any object to define its own properties and methods.
   Chainable.
 
   Usage:
-    let foo = __.compose(Object.create(null), ObjectExtensions);
+    let foo = gutil.compose(Object.create(null), ObjectExtensions);
     foo.property("propOne", 1).property("prop2", 2).def("fn", () => ({}));
  */
-const ObjectExtensions = (() => {
+gutil.ObjectExtensions = (() => {
   let o = {};
 
   // Used for defining a writable/enumerable property
@@ -40,23 +42,34 @@ const ObjectExtensions = (() => {
 })();
 
 
+// Set up prototype chain and concatenative inheritance
+gutil.compose = (proto, ...args) => {
+  let target = Object.create(proto)
+  args.each(arg => target = Object.assign(target, arg));
+  return target;
+};
 
-// Create object to which utility functions are added for use in the project
-const __ = (() => {
+// Get any URL parameter
+gutil.getURLParameter = (name) => {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+};
 
-  return Object.freeze({
-    compose (proto, ...args) {
-      let target = Object.create(proto)
-      args.each(arg => target = Object.assign(target, arg));
-      return target;
-    },
+/*
+  The privy allows modules to have weakly-held private data contained
+  in a new WeakMap. It returns a function to access that WeakMap.
+*/
+gutil.privy = Object.create(null);
+gutil.privy.init = () => {
+  let _private = new WeakMap();
 
-    getURLParameter (name) {
-      return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-    }
-  });
+  return function (object) {
+    if (!_private.has(object))
+        _private.set(object, Object.create(null));
+    return _private.get(object);
+  };
+};
 
-})();
+Object.freeze(gutil);
 
 
 

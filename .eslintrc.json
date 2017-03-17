@@ -21,8 +21,7 @@
         "valid-typeof": "warn"
     },
     "globals": {
-        "ObjectExtensions": true,
-        "__": true,
-        "$": true
+        "$": true,
+        "gutil": true
     }
 }

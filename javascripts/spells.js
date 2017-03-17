@@ -1,17 +1,10 @@
 "use strict";
 
 var Gauntlet = function (global) {
-
-  let _private = new WeakMap();
-
-  const _internal = function (object) {
-    if (!_private.has(object))
-        _private.set(object, Object.create(null));
-    return _private.get(object);
-  };
-
+  const _internal = gutil.privy.init(); // Private store
+  
   // Create prototypal master spell. Add object extensions.
-  let MasterSpell = __.compose(Object.create(null), ObjectExtensions);
+  let MasterSpell = gutil.compose(Object.create(null), gutil.ObjectExtensions);
 
   // String representation of master spell
   MasterSpell.def("toString", function () {
@@ -63,7 +56,7 @@ var Gauntlet = function (global) {
   MasterSpell.property("elements", ["lightning", "fire", "water", "earth", "mysticism"]);
 
   // Spellbook will hold all defined spells
-  let Spellbook = __.compose(Object.create(null), ObjectExtensions);
+  let Spellbook = gutil.compose(Object.create(null), gutil.ObjectExtensions);
 
   // Initialization sets up the private spell list array and name set
   Spellbook.def("init", function () {
@@ -83,7 +76,7 @@ var Gauntlet = function (global) {
 
         // Iterate all spell objects in the JSON file
         response.spells.each(currentSpell =>
-          _internal(this).spell_list.push(__.compose(MasterSpell, currentSpell))
+          _internal(this).spell_list.push(gutil.compose(MasterSpell, currentSpell))
         );
 
         // Resolve the spell loading promise with the spell list

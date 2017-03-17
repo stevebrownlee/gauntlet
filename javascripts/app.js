@@ -61,7 +61,7 @@
       http://localhost:8080/?console=true
 
    */
-  if (__.getURLParameter("console") === "true") {
+  if (gutil.getURLParameter("console") === "true") {
     let battleground = Gauntlet.Battleground.init(warrior, enemy, true);
     let battleTimer = window.setInterval(() => {
       if (!battleground.melee()) {

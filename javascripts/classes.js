@@ -1,17 +1,10 @@
 "use strict";
 
 var Gauntlet = function (global) {
-
-  let _private = new WeakMap();
-
-  const _internal = function (object) {
-    if (!_private.has(object))
-        _private.set(object, Object.create(null));
-    return _private.get(object);
-  };
+  const _internal = gutil.privy.init(); // Private store
 
   // Spellbook will hold all defined spells
-  let GuildHall = __.compose(Object.create(null), ObjectExtensions);
+  let GuildHall = gutil.compose(Object.create(null), gutil.ObjectExtensions);
 
   // Initialization sets up the private spell list array and name set
   GuildHall.def("init", function () {
@@ -38,9 +31,9 @@ var Gauntlet = function (global) {
               : _internal(this).all_professions.get(current_class.prototype);
 
           // Create the new profession
-          let profession = __.compose(prototype_for_object,
+          let profession = gutil.compose(prototype_for_object,
                                       current_class,
-                                      ObjectExtensions);
+                                      gutil.ObjectExtensions);
 
           // Add a toString() method to each class which displays the label
           profession.def("toString", () => current_class.label);

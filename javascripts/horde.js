@@ -1,32 +1,29 @@
 "use strict";
 
 var Gauntlet = function (global) {
+  const _internal = gutil.privy.init(); // Private store
 
-  let _private = new WeakMap();
+  // The Horde will contain all monster combatants
+  const Horde = gutil.compose(Object.create(null), gutil.ObjectExtensions);
 
-  const _internal = function (object) {
-    if (!_private.has(object))
-        _private.set(object, Object.create(null));
-    return _private.get(object);
-  };
-  
-  let Horde = __.compose(Object.create(null), ObjectExtensions);
-
+  // Initialization
   Horde.def("init", function () {
     _internal(this).horde = new Map();
     _internal(this).names = new Set();
     return this;
   });
 
+  // Return all monsters
   Horde.def("all", function () {
     return _internal(this).horde;
   });
 
-  Horde.def("soldier", function () {
-    let soldier = Object.create(_internal(this).horde.get(type));
-    return soldier;
+  // Get a specific type of monster
+  Horde.def("soldier", function (type) {
+    return Object.create(_internal(this).horde.get(type));
   });
 
+  // Get a random monster
   Horde.def("random", function () {
     let randomSoldier = null;
 
@@ -45,6 +42,7 @@ var Gauntlet = function (global) {
     return randomSoldier;
   });
 
+  // Load all monsters from JSON file
   Horde.def("load", function () {
     return new Promise((resolve, reject) => {
       $.ajax({url: "./data/horde.json"}).done(response => {
@@ -76,7 +74,7 @@ var Gauntlet = function (global) {
             Create a new object for the current monster based on the
             corresponding prototype
             */
-          let monster_for_map = __.compose(object_prototype, monster, {
+          let monster_for_map = gutil.compose(object_prototype, monster, {
             species: monster["id"]
           });
 
