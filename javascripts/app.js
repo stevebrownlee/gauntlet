@@ -31,6 +31,7 @@
 
   let professionHTML = '<div class="row">';
   for (let c of Gauntlet.GuildHall.classes().values()) {
+    // Construct button for playable classes
     if (c.playable) {
       professionHTML += '<div class="col-sm-4">';
       professionHTML += '  <div class="card__button">';

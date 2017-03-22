@@ -4,7 +4,7 @@ var Gauntlet = function (global) {
   const _internal = gutil.privy.init(); // Private store
 
   // Spellbook will hold all defined spells
-  let GuildHall = gutil.compose(Object.create(null), gutil.ObjectExtensions);
+  let GuildHall = Object.create(gutil.ObjectExtensions);
 
   // Initialization sets up the private spell list array and name set
   GuildHall.def("init", function () {

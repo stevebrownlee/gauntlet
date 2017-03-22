@@ -1,13 +1,11 @@
 "use strict";
 
 var Gauntlet = function (global) {
-  const _internal = gutil.privy.init(); // Private store
-
   /*
     Base weapon object that all other specific weapons will
     have as their prototype.
   */
-  const Weapon = gutil.compose(Object.create(null), gutil.ObjectExtensions);
+  const Weapon = Object.create(gutil.ObjectExtensions);
 
   Weapon.property("id", "nothing").property("label", "bare hands")
         .property("hands", 2).property("base_damage", 1)
@@ -46,8 +44,10 @@ var Gauntlet = function (global) {
     return `${this.label}`;
   });
 
+  const _internal = gutil.privy.init(); // Private store
+  
   // Armory object contains all weapons loaded from JSON file
-  const Armory = gutil.compose(Object.create(null), gutil.ObjectExtensions);
+  const Armory = Object.create(gutil.ObjectExtensions);
 
   Armory.def("init", function () {
     _internal(this).weapon_list = [];

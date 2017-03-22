@@ -4,7 +4,7 @@ var Gauntlet = function (global) {
   const _internal = gutil.privy.init(); // Private store
   
   // Create prototypal master spell. Add object extensions.
-  let MasterSpell = gutil.compose(Object.create(null), gutil.ObjectExtensions);
+  let MasterSpell = Object.create(gutil.ObjectExtensions);
 
   // String representation of master spell
   MasterSpell.def("toString", function () {

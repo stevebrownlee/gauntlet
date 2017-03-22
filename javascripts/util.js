@@ -11,7 +11,7 @@ let gutil = Object.create(null);
     foo.property("propOne", 1).property("prop2", 2).def("fn", () => ({}));
  */
 gutil.ObjectExtensions = (() => {
-  let o = {};
+  const o = Object.create(null);
 
   // Used for defining a writable/enumerable property
   o.property = new Proxy(Object.defineProperty, {
@@ -60,7 +60,7 @@ gutil.getURLParameter = (name) => {
 */
 gutil.privy = Object.create(null);
 gutil.privy.init = () => {
-  let _private = new WeakMap();
+  const _private = new WeakMap();
 
   return function (object) {
     if (!_private.has(object))
@@ -70,7 +70,6 @@ gutil.privy.init = () => {
 };
 
 Object.freeze(gutil);
-
 
 
 // CAUTION: Extend native prototypes only if you understand the consequences

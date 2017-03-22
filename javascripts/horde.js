@@ -4,7 +4,7 @@ var Gauntlet = function (global) {
   const _internal = gutil.privy.init(); // Private store
 
   // The Horde will contain all monster combatants
-  const Horde = gutil.compose(Object.create(null), gutil.ObjectExtensions);
+  const Horde = Object.create(gutil.ObjectExtensions);
 
   // Initialization
   Horde.def("init", function () {
