@@ -37,30 +37,28 @@ var Gauntlet = function (global) {
     let total_effect = Math.round(this.effect + (this.intelligence_modifier || 0));
     total_effect *= (this.augment) ? 1 : -1;
 
-    switch (this.affected_trait) {
-      case "health":
-        target.setHealth(target.getHealth() - total_effect);
-        break;
-
-      case "strength":
-        target.setStrength(target.getStrength() - total_effect);
-        break;
-
-      case "intellgence":
-        target.setIntelligence(target.getIntelligence() - total_effect);
-        break;
-
-      case "protection":
-        target.setProtection(target.getProtection() - total_effect);
-        break;
-    
-      default:
-        break;
-    }
-
+    // If a protection spell, set protection to calculated amount
     if (this.affected_trait === "protection") {
+      target.setProtection(total_effect);
+
+    // All other spells reduce the corresponding trait on the target
     } else {
-      target[this.affected_trait] += total_effect;
+      switch (this.affected_trait) {
+        case "health":
+          target.setHealth(target.getHealth() + total_effect);
+          break;
+
+        case "strength":
+          target.setStrength(target.getStrength() + total_effect);
+          break;
+
+        case "intellgence":
+          target.setIntelligence(target.getIntelligence() + total_effect);
+          break;
+
+        default:
+          break;
+      }
     }
 
     return {
