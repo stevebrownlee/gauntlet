@@ -6,10 +6,10 @@ var Gauntlet = function ($$gauntlet) {
 
   $$gauntlet.Battleground.init = function (human_combatant, enemy_combatant, console_output = false) {
     this.human = human_combatant;
-    this.human.startingHealth = this.human.health;
+    this.human.setStartingHealth(this.human.getHealth());
 
     this.enemy = enemy_combatant;
-    this.enemy.startingHealth = this.enemy.health;
+    this.enemy.setStartingHealth(this.enemy.getHealth());
 
     this.console_output = console_output;
 
@@ -21,31 +21,31 @@ var Gauntlet = function ($$gauntlet) {
     const attack = (combatant, target) => {
       let attack, result, modifier;
 
-      if (combatant.profession.magical) {
+      if (combatant.getProfession().magical) {
         // Select a spell
         const spell = Gauntlet.Spellbook.spells().random();
 
         // Modify its effectiveness based on caster's intelligence
-        modifier = Math.floor(combatant.intelligence / 40);
+        modifier = Math.floor(combatant.getIntelligence() / 40);
 
         // Calculate the damage/effect
         attack = spell.read(modifier).cast().at((spell.defensive) ? combatant : target);
 
         // Build attack result message
-        result = `\n${combatant.name} cast ${attack.spell} of ${attack.element} `;
-        result += `on ${(spell.defensive) ? combatant.name : target.name} `;
+        result = `\n${combatant.getName()} cast ${attack.spell} of ${attack.element} `;
+        result += `on ${(spell.defensive) ? combatant.getName() : target.getName()} `;
         result += `for ${attack.damage} ${attack.effect}\n\n`;
       } else {
         // Modify attack effectiveness based on caster's strength
-        modifier = Math.floor(combatant.strength / 20);
+        modifier = Math.floor(combatant.getStrength() / 20);
 
         // Calculate the damage
-        attack = combatant.weapon.swing(modifier).at(target);
+        attack = combatant.getWeapon().swing(modifier).at(target);
         
         // Build attack result message
-        result = `\n${combatant.name} hit ${target.name} `;
-        result += `in the ${target.limbs.random()} `;
-        result += `with the ${combatant.weapon.toString().toLowerCase()} `;
+        result = `\n${combatant.getName()} hit ${target.getName()} `;
+        result += `in the ${target.getLimbs().random()} `;
+        result += `with the ${combatant.getWeapon().toString().toLowerCase()} `;
         result += `for ${attack.damage} damage.\n\n`;
       }
 
@@ -53,7 +53,8 @@ var Gauntlet = function ($$gauntlet) {
     };
 
     const generateHealthBar = (target) => {
-      let percentage = Math.floor(target.health / target.startingHealth * 20);
+      let percentage = Math.floor(target.getHealth() / target.getStartingHealth() * 20);
+      
       if (percentage < 0) percentage = 0;
       let healthBar = `%c[${'*'.repeat(percentage)}${' '.repeat(20 - percentage)}]`;
 
@@ -77,21 +78,21 @@ var Gauntlet = function ($$gauntlet) {
 
     if (this.console_output) {
       console.clear();
-      console.log(`${this.human.name} the ${this.human.profession.label} (${this.human.strength} str) (${this.human.intelligence} int) (${this.human.protection} armor) wielding a ${(this.human.weapon) ? this.human.weapon : "Spellbook"}`);
+      console.log(`${this.human.getName()} the ${this.human.getProfession().label} (${this.human.getStrength()} str) (${this.human.getIntelligence()} int) (${this.human.getProtection()} armor) wielding a ${(this.human.getWeapon()) ? this.human.getWeapon() : "Spellbook"}`);
       generateHealthBar(this.human);
 
-      console.log(`${this.enemy.name} the ${this.enemy.id} ${this.enemy.profession.label} (${this.enemy.strength} str) (${this.enemy.intelligence} int) (${this.enemy.protection} armor) wielding a ${(this.enemy.weapon) ? this.enemy.weapon : "Spellbook"}`);
+      console.log(`${this.enemy.getName()} the ${this.enemy.id} ${this.enemy.getProfession().label} (${this.enemy.getStrength()} str) (${this.enemy.getIntelligence()} int) (${this.enemy.getProtection()} armor) wielding a ${(this.enemy.getWeapon()) ? this.enemy.getWeapon() : "Spellbook"}`);
       generateHealthBar(this.enemy);
 
       console.log(`${player_outcome}`);
 
-      if (this.enemy.health <= 0) {
-        console.log(`${this.human.name} won!!`);
+      if (this.enemy.getHealth() <= 0) {7
+        console.log(`${this.human.getName()} won!!`);
         return false;
       }
     } else {
       $("#battle-record").append(`<div class="battle-record__human">${player_outcome}</div>`);
-      if (this.enemy.health <= 0) {
+      if (this.enemy.getHealth() <= 0) {
         $("#battle-record").append("<div class=\"battle-over\">The battle is over. You won!</div>");
         return false;
       }
@@ -102,14 +103,14 @@ var Gauntlet = function ($$gauntlet) {
 
     if (this.console_output) {
       console.log(`${enemy_outcome}`);
-      if (this.human.health <= 0) {
-        console.log(`${this.enemy.name} won!!`);
+      if (this.human.getHealth() <= 0) {
+        console.log(`${this.enemy.getName()} won!!`);
         return false;
       }
     } else {
       $("#battle-record").append(`<div class="battle-record__enemy">${enemy_outcome}</div>`);
-      if (this.human.health <= 0) {
-        $("#battle-record").append("<div class=\"battle-over\">The battle is over. The " + this.enemy.name + " won!</div>");
+      if (this.human.getHealth() <= 0) {
+        $("#battle-record").append("<div class=\"battle-over\">The battle is over. The " + this.enemy.getName() + " won!</div>");
         return false;
       }
     }

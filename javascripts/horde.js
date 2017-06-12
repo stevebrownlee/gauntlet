@@ -37,7 +37,7 @@ var Gauntlet = function (global) {
     } while (randomSoldier.id === "Monster");
 
     // Give the soldier a random name
-    randomSoldier.name = _internal(this).names.random();
+    randomSoldier.setName(_internal(this).names.random());
 
     return randomSoldier;
   });
@@ -65,7 +65,7 @@ var Gauntlet = function (global) {
 
           // The base monster will always have Player as its prototype
           if (monster.prototype === null) {
-            object_prototype = global.Army.Player;
+            object_prototype = global.Player;
           } else  {
             object_prototype = _internal(this).horde.get(monster.prototype);
           };

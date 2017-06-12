@@ -36,8 +36,29 @@ var Gauntlet = function (global) {
     // TODO: Add critical chance
     let total_effect = Math.round(this.effect + (this.intelligence_modifier || 0));
     total_effect *= (this.augment) ? 1 : -1;
+
+    switch (this.affected_trait) {
+      case "health":
+        target.setHealth(target.getHealth() - total_effect);
+        break;
+
+      case "strength":
+        target.setStrength(target.getStrength() - total_effect);
+        break;
+
+      case "intellgence":
+        target.setIntelligence(target.getIntelligence() - total_effect);
+        break;
+
+      case "protection":
+        target.setProtection(target.getProtection() - total_effect);
+        break;
+    
+      default:
+        break;
+    }
+
     if (this.affected_trait === "protection") {
-      target[this.affected_trait] = total_effect;
     } else {
       target[this.affected_trait] += total_effect;
     }

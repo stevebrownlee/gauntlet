@@ -25,13 +25,13 @@ var Gauntlet = function (global) {
 
 
     // Add strength modifier and reduce by target's armor
-    damage += Math.round(this.strength_modifier - target.protection);
+    damage += Math.round(this.strength_modifier - target.getProtection());
 
     // Minimum damage is 0
     damage = (damage < 0) ? 0 : damage;
 
     // Reduce target's health
-    target.health -= damage;
+    target.setHealth(target.getHealth() - damage);
 
     return {
       weapon: this.label,

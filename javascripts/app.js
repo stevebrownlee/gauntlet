@@ -16,7 +16,7 @@
    */
   console.group("Sample Combatants");
   console.log("Creating a new Human instance");
-  let warrior = Gauntlet.Army.Human.init("Joe").equip();
+  let warrior = Gauntlet.Player.init("Joe").equip();
   console.log(warrior.toString());
   console.log(" ");
   console.log("Creating a new Enemy instance");
@@ -24,34 +24,6 @@
   enemy.equip();
   console.log(enemy.toString());
   console.groupEnd("Sample Combatants");
-
-
-  // Populate the professions view
-  let cellTracker = 1;
-
-  let professionHTML = '<div class="row">';
-  for (let c of Gauntlet.GuildHall.classes().values()) {
-    // Construct button for playable classes
-    if (c.playable) {
-      professionHTML += '<div class="col-sm-4">';
-      professionHTML += '  <div class="card__button">';
-      professionHTML += '    <a class="class__link btn btn--big btn--blue" href="#">';
-      professionHTML += '      <span class="btn__prompt">&gt;</span>';
-      professionHTML += `      <span class="btn__text">${c.label}</span>`;
-      professionHTML += '    </a>';
-      professionHTML += '  </div>';
-      professionHTML += '</div>';
-
-      if (cellTracker % 3 === 0) {
-        professionHTML += '</div>';
-        professionHTML += '<div class="row">';
-      }
-      cellTracker++;
-    }
-  }
-  professionHTML += '</div>';
-  $(".professions__container").append(professionHTML);
-
 
   /*
     To have a sample battle run in the console, without needing
@@ -73,6 +45,41 @@
 }).catch(console.error);
 
 $(document).ready(function() {
+  const isConsoleGame = gutil.getURLParameter("console");
+
+  // Await the loading of the professions from the Guild Hall module
+  (async () => {
+    await Gauntlet.GuildHall.load();
+  })().then(() => {
+    // Populate the professions view
+    let cellTracker = 1;
+
+    if (isConsoleGame !== "true") {
+      let professionHTML = '<div class="row">';
+      for (let c of Gauntlet.GuildHall.classes().values()) {
+        // Construct button for playable classes
+        if (c.playable) {
+          professionHTML = `
+            <div class="col-sm-4">
+              <div class="card__button">
+                <a class="class__link btn btn--big btn--blue" href="#">
+                  <span class="btn__prompt">&gt;</span>
+                  <span class="btn__text">${c.label}</span>
+                </a>
+              </div>
+            </div>
+          `;
+
+          if (cellTracker % 3 === 0) {
+            professionHTML += '</div><div class="row">';
+          }
+          cellTracker++;
+        }
+      }
+      professionHTML += '</div>';
+      $(".professions__container").append(professionHTML);
+    }
+  })
 
   /*
     Show the initial view that accepts player name
@@ -86,13 +93,13 @@ $(document).ready(function() {
   let battleTimer;
 
   // Show player name view initially
-  $("#player-setup").show();
+  if (isConsoleGame !== "true") $("#player-setup").show();
 
 
   // When user enters name, show the profession view
   $("#player-name").on("keydown", function (e) {
     if ($(this).val() && e.keyCode == 13) {
-      HumanCombatant = Gauntlet.Army.Human.init($("#player-name").val());
+      HumanCombatant = Gauntlet.Player.init($("#player-name").val());
       $(".card").hide();
       $(".card--class").show();
     }
