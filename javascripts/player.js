@@ -16,13 +16,12 @@ var Gauntlet = function (gauntlet) {
   const limbs = Symbol();
   const skinColor = Symbol();
   const skinColors = Symbol();
-  let army = Object.create(null);
 
   /*
     Define the base object for any combatant of Gauntlet,
     whether a human combatant or a monster.
    */
-  let combatant = army.Player = Object.create(gutil.ObjectExtensions);
+  let combatant = Object.create(gutil.ObjectExtensions);
 
   combatant[species] = null;
   combatant[profession] = null;
@@ -202,8 +201,6 @@ var Gauntlet = function (gauntlet) {
     Define the base properties for a human in a
     constructor function.
    */
-  army.Human = Object.create(combatant);
-
   combatant.def("init", function (name) {
     this[species] = "Human";
     this.setName(name);
