@@ -37,6 +37,12 @@ var Gauntlet = function (global) {
     let total_effect = Math.round(this.effect + (this.intelligence_modifier || 0));
     total_effect *= (this.augment) ? 1 : -1;
 
+    const critical = Math.floor(Math.random() * 100);
+    if (critical > 95) {
+      console.log("%c** CRITICAL SPELL **", `color:#fff; background-color:#000;`);
+      total_effect *= 2;
+    }
+
     // If a protection spell, set protection to calculated amount
     if (this.affected_trait === "protection") {
       target.setProtection(total_effect);

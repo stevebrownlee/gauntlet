@@ -17,6 +17,10 @@ var Gauntlet = function ($$gauntlet) {
   };
 
   $$gauntlet.Battleground.melee = function () {
+    if (this.console_output) {
+      console.clear();
+    }
+
     // Perform attack and return the string outcome
     const attack = (combatant, target) => {
       let attack, result, modifier;
@@ -74,20 +78,22 @@ var Gauntlet = function ($$gauntlet) {
       console.log(healthBar, `color:${barColor}; background-color:gainsboro;`);
     }
 
-    /* Perform player action */
-    const player_outcome = attack(this.human, this.enemy);
-
     if (this.console_output) {
-      console.clear();
       console.log(`${this.human.getName()} the ${this.human.getProfession().label} (${this.human.getStrength()} str) (${this.human.getIntelligence()} int) (${this.human.getProtection()} armor) wielding a ${(this.human.getWeapon()) ? this.human.getWeapon() : "Spellbook"}`);
       generateHealthBar(this.human);
 
       console.log(`${this.enemy.getName()} the ${this.enemy.id} ${this.enemy.getProfession().label} (${this.enemy.getStrength()} str) (${this.enemy.getIntelligence()} int) (${this.enemy.getProtection()} armor) wielding a ${(this.enemy.getWeapon()) ? this.enemy.getWeapon() : "Spellbook"}`);
       generateHealthBar(this.enemy);
+    }
 
+    /* Perform player action */
+    if (this.console_output) console.group("Player attack");
+    const player_outcome = attack(this.human, this.enemy);
+
+    if (this.console_output) {
       console.log(`${player_outcome}`);
 
-      if (this.enemy.getHealth() <= 0) {7
+      if (this.enemy.getHealth() <= 0) {
         console.log(`${this.human.getName()} won!!`);
         return false;
       }
@@ -98,8 +104,10 @@ var Gauntlet = function ($$gauntlet) {
         return false;
       }
     }
+    if (this.console_output) console.groupEnd("Player attack");
 
     /* Perform enemy action */
+    if (this.console_output) console.group("Enemy attack");
     const enemy_outcome = attack(this.enemy, this.human);
 
     if (this.console_output) {
@@ -115,6 +123,7 @@ var Gauntlet = function ($$gauntlet) {
         return false;
       }
     }
+    if (this.console_output) console.groupEnd("Enemy attack");
 
     return true;
   };
