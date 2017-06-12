@@ -56,6 +56,7 @@ var Gauntlet = function ($$gauntlet) {
       let percentage = Math.floor(target.getHealth() / target.getStartingHealth() * 20);
       
       if (percentage < 0) percentage = 0;
+      if (percentage > 20) percentage = 20;
       let healthBar = `%c[${'*'.repeat(percentage)}${' '.repeat(20 - percentage)}]`;
 
       let barColor = null;

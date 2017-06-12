@@ -89,14 +89,14 @@ var Gauntlet = function (gauntlet) {
   };
 
   combatant.modifyStrength = function (bonus) {
-    this.strength += bonus;
-    if (this.strength < 10) this.strength = 10;
+    this[strength] += bonus;
+    if (this[strength] < 10) this[strength] = 10;
     return this;
   };
 
   combatant.modifyIntelligence = function (bonus) {
-    this.intelligence += bonus;
-    if (this.intelligence < 10) this.intelligence = 10;
+    this[intelligence] += bonus;
+    if (this[intelligence] < 10) this[intelligence] = 10;
     return this;
   };
 
