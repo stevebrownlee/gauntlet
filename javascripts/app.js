@@ -12,20 +12,6 @@
 })().then(() => {
 
   /*
-    Test code to generate a human player and a random enemy
-   */
-  console.group("Sample Combatants");
-  console.log("Creating a new Human instance");
-  let warrior = Gauntlet.Player.init("Joe").equip();
-  console.log(warrior.toString());
-  console.log(" ");
-  console.log("Creating a new Enemy instance");
-  let enemy = Gauntlet.Horde.random();
-  enemy.equip();
-  console.log(enemy.toString());
-  console.groupEnd("Sample Combatants");
-
-  /*
     To have a sample battle run in the console, without needing
     to select anything in the DOM application, just add console=true
     to the URL.
@@ -45,7 +31,7 @@
 }).catch(console.error);
 
 $(document).ready(function() {
-  const isConsoleGame = gutil.getURLParameter("console");
+  const isConsoleGame = gutil.getURLParameter("console") === "true";
 
   // Await the loading of the professions from the Guild Hall module
   (async () => {
@@ -54,30 +40,31 @@ $(document).ready(function() {
     // Populate the professions view
     let cellTracker = 1;
 
-    if (isConsoleGame !== "true") {
-      let professionHTML = '<div class="row">';
-      for (let c of Gauntlet.GuildHall.classes().values()) {
-        // Construct button for playable classes
-        if (c.playable) {
-          professionHTML = `
-            <div class="col-sm-4">
-              <div class="card__button">
-                <a class="class__link btn btn--big btn--blue" href="#">
-                  <span class="btn__prompt">&gt;</span>
-                  <span class="btn__text">${c.label}</span>
-                </a>
-              </div>
-            </div>
-          `;
+    if (!isConsoleGame) {
 
-          if (cellTracker % 3 === 0) {
-            professionHTML += '</div><div class="row">';
+      let rower = 0;
+      const classTemplate = classes => gutil.html`
+        <div class="row">
+        ${[...classes].map((c, i) => {
+          if (c.playable) {
+            if (!(++rower%4)) return '</div><div class="row">';
+            return gutil.html`
+              <div class="col-sm-4">
+                <div class="card__button">
+                  <a class="class__link btn btn--big btn--blue" href="#">
+                    <span class="btn__prompt">&gt;</span>
+                    <span class="btn__text">${c.label}</span>
+                  </a>
+                </div>
+              </div>
+            `
           }
-          cellTracker++;
-        }
-      }
-      professionHTML += '</div>';
-      $(".professions__container").append(professionHTML);
+        })}
+        </div>
+      `;
+
+      var result = classTemplate(Gauntlet.GuildHall.classes().values());
+      $(".professions__container").append(result);
     }
   })
 
@@ -93,8 +80,7 @@ $(document).ready(function() {
   let battleTimer;
 
   // Show player name view initially
-  if (isConsoleGame !== "true") $("#player-setup").show();
-
+  if (!isConsoleGame) $("#player-setup").show();
 
   // When user enters name, show the profession view
   $("#player-name").on("keydown", function (e) {
@@ -104,7 +90,6 @@ $(document).ready(function() {
       $(".card--class").show();
     }
   });
-
 
   // When user selects a profession, show the weapon view
   $(document).on("click", ".class__link", function(e) {
@@ -119,34 +104,33 @@ $(document).ready(function() {
       let weaponEl = $("#weapon-select").children(".card__prompt");
       $(".weapons").remove();
 
-      let block = ['<div class="row weapons">',
-                   '<div class="col-sm-6">'];
-
-      chosenProfession.allowedWeapons.each((weapon, index) => {
-        let weaponName = Gauntlet.Armory
+      const wpnTemplate = weapons => gutil.html`
+        <div class="row weapons">
+            ${[...weapons].map((weapon, i) => {
+              let weaponName = Gauntlet.Armory
                                  .weapons()
                                  .find(w => w.id === weapon)
                                  .toString();
+              if (!(i%3)) return '</div><div class="row weapons">';
+              return gutil.html`
+                <div class="col-sm-6">
+                  <div class="card__button">
+                    <a class="weapon__link btn btn--big btn--blue" href="#">
+                      <span class="btn__prompt">&gt;</span>
+                      <span class="btn__text weapon__name" weapon=${weapon}>${weaponName}</span>
+                    </a>
+                  </div>
+                </div>
+              `
+            })}
+        </div>
+      `;
 
-        // Close individual rows and start new ones
-        if (index === 3) {
-          block.push('</div>', '<div class="col-sm-6">');
-        }
-
-        // Add weapon block to DOM
-        block.push('<div class="card__button">',
-                   '<a class="weapon__link btn btn--big btn--blue" href="#">',
-                   '<span class="btn__prompt">&gt;</span>',
-                   `<span class="btn__text weapon__name" weapon='${weapon}'>${weaponName}</span>`,
-                   '</a></div>');
-      });
-      block.push("</div></div>");
-      weaponEl.append(block.join(""));
+      var result = wpnTemplate(chosenProfession.allowedWeapons);
+      weaponEl.append(result);
       $(".card--weapon").show();
     }
-
   });
-
 
   /*
     Handle user choosing a weapon for the human combatant
@@ -154,8 +138,8 @@ $(document).ready(function() {
   $(document).on("click", ".weapon__link", function(e) {
     let weapon = $(this).find(".btn__text").attr("weapon");
     chosenWeapon = Gauntlet.Armory
-                             .weapons()
-                             .find(w => w.id === weapon);
+                           .weapons()
+                           .find(w => w.id === weapon);
     HumanCombatant.equip(chosenProfession, chosenWeapon);
 
     $(".card").hide();
@@ -163,7 +147,6 @@ $(document).ready(function() {
 
     startCombat();
   });
-
 
   // Define the logic that will display the results after each round of combat
   function meleeRound() {
@@ -186,7 +169,6 @@ $(document).ready(function() {
   // Begin the battle
   function startCombat() {
     EnemyCombatant = Gauntlet.Horde.random();
-    // EnemyCombatant = Gauntlet.Horde.soldier("Dragon");
     EnemyCombatant.equip();
 
     $(".battle--human").html(HumanCombatant.toString());
@@ -219,7 +201,6 @@ $(document).ready(function() {
     $("#player-name").focus();
   });
 
-
   /*
     When the back button clicked, move back a view
    */
@@ -228,5 +209,4 @@ $(document).ready(function() {
     $(".card").hide();
     $(`.${previousCard}`).show();
   });
-
 });

@@ -24,7 +24,7 @@ var Gauntlet = function (global) {
     // Calculate if a critical hit was made
     const critical = Math.floor(Math.random() * 100);
     if (critical > 85) {
-      console.log("%c** CRITICAL HIT **", `color:#fff; background-color:#000;`);
+      console.log("%c** CRITICAL HIT **", "color:#fff; background-color:#000;");
       // Add strength modifier. Bypasses target protection if critical.
       damage += Math.round(this.strength_modifier);
       damage *= 3;

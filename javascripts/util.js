@@ -54,6 +54,23 @@ gutil.getURLParameter = (name) => {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 };
 
+gutil.html = (templateObject, ...substs) => {
+    const raw = templateObject.raw;
+    let result = '';
+
+    substs.each((subst, i) => { // Run the substitutions
+        let lit = raw[i];
+        if (Array.isArray(subst)) subst = subst.join('');
+        if (lit.endsWith('!')) {
+            subst = htmlEscape(subst);
+            lit = lit.slice(0, -1);
+        }
+        result += lit;
+        result += subst;
+    });
+    return result += raw[raw.length-1]; // Add last template string
+};
+
 /*
   The privy allows modules to have weakly-held private data contained
   in a new WeakMap. It returns a function to access that WeakMap.
