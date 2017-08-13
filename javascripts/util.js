@@ -62,7 +62,7 @@ gutil.html = (templateObject, ...substs) => {
         let lit = raw[i];
         if (Array.isArray(subst)) subst = subst.join('');
         if (lit.endsWith('!')) {
-            subst = htmlEscape(subst);
+            subst = (subst) => subst.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/`/g, '&#96;');
             lit = lit.slice(0, -1);
         }
         result += lit;

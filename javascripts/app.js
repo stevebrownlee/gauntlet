@@ -85,7 +85,7 @@ $(document).ready(function() {
   // When user enters name, show the profession view
   $("#player-name").on("keydown", function (e) {
     if ($(this).val() && e.keyCode == 13) {
-      HumanCombatant = Gauntlet.Player.init($("#player-name").val());
+      HumanCombatant = Gauntlet.Player.init($(this).val());
       $(".card").hide();
       $(".card--class").show();
     }
