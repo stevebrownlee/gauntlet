@@ -10,7 +10,16 @@
   await Gauntlet.Horde.load();
   await Gauntlet.GuildHall.load();
 })().then(() => {
-
+    console.group("Sample Combatants");		
+    console.log("Creating a new Human instance");		
+    let warrior = Gauntlet.Player.init("Joe").equip();		
+    console.log(warrior.toString());		
+    console.log(" ");		
+    console.log("Creating a new Enemy instance");		
+    let enemy = Gauntlet.Horde.random();		
+    enemy.equip();		
+    console.log(enemy.toString());		
+    console.groupEnd("Sample Combatants");
   /*
     To have a sample battle run in the console, without needing
     to select anything in the DOM application, just add console=true
