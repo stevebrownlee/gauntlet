@@ -4,6 +4,10 @@ body {
   font-size: 3em;
 }
 
+.transparent {
+  display: none;
+}
+
 .field {
   margin: 20px 0 0 0;
 }
@@ -22,9 +26,6 @@ h1 {
 /*
   Section styles
  */
-.card {
-  display: none;
-}
 
 .card__prompt {
   font-size: 1.1em;

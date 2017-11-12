@@ -67,7 +67,10 @@ var Gauntlet = function (global) {
       $.ajax({url: "./data/weapons.json"}).done(response => {
         // Iterate all weapon objects in the JSON file
         response.weapons.each(weapon =>
-          _internal(this).weapon_list.push( gutil.compose(Weapon, weapon)) )
+          _internal(this).weapon_list.push(
+            gutil.compose(Weapon, weapon)
+          )
+        )
 
         // Resolve the weapon loading promise with the weapon list
         resolve(_internal(this).weapon_list)

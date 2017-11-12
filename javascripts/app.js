@@ -92,17 +92,19 @@ $(document).ready(function() {
   if (!isConsoleGame) $("#player-setup").show();
 
   // When user enters name, show the profession view
-  $("#player-name").on("keydown", function (e) {
-    if ($(this).val() && e.keyCode == 13) {
-      HumanCombatant = Gauntlet.Player.init($(this).val());
-      $(".card").hide();
-      $(".card--class").show();
+  document.querySelector("#player-name").listen(
+    "keydown", function (e) {
+      if (this.value && e.keyCode == 13) {
+        HumanCombatant = Gauntlet.Player.init(this.value);
+        $(".card").hide();
+        $(".card--class").show();
+      }
     }
-  });
+  )
 
   // When user selects a profession, show the weapon view
   $(document).on("click", ".class__link", function(e) {
-    chosenProfession = Gauntlet.GuildHall.classes().get($(this).children(".btn__text").html());
+    chosenProfession = Gauntlet.GuildHall.classes.get($(this).children(".btn__text").html());
     $(".card").hide();
 
     if (chosenProfession.magical) {
@@ -116,17 +118,14 @@ $(document).ready(function() {
       const wpnTemplate = weapons => gutil.html`
         <div class="row weapons">
             ${[...weapons].map((weapon, i) => {
-              let weaponName = Gauntlet.Armory
-                                 .weapons()
-                                 .find(w => w.id === weapon)
-                                 .toString();
+              let wpn = Gauntlet.Armory.weapons.find(w => w.id === weapon).toString();
               if (!(i%3)) return '</div><div class="row weapons">';
               return gutil.html`
                 <div class="col-sm-6">
                   <div class="card__button">
                     <a class="weapon__link btn btn--big btn--blue" href="#">
                       <span class="btn__prompt">&gt;</span>
-                      <span class="btn__text weapon__name" weapon=${weapon}>${weaponName}</span>
+                      <span class="btn__text weapon__name" weapon=${weapon}>${wpn}</span>
                     </a>
                   </div>
                 </div>
@@ -146,9 +145,7 @@ $(document).ready(function() {
    */
   $(document).on("click", ".weapon__link", function(e) {
     let weapon = $(this).find(".btn__text").attr("weapon");
-    chosenWeapon = Gauntlet.Armory
-                           .weapons()
-                           .find(w => w.id === weapon);
+    chosenWeapon = Gauntlet.Armory.weapons.find(w => w.id === weapon);
     HumanCombatant.equip(chosenProfession, chosenWeapon);
 
     $(".card").hide();

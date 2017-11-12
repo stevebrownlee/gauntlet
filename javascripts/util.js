@@ -53,7 +53,6 @@ gutil.ObjectExtensions = (() => {
   return Object.freeze(o);
 })();
 
-
 // Set up prototype chain and concatenative inheritance
 gutil.compose = (proto, ...args) => {
   let target = Object.create(proto)
