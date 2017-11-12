@@ -72,7 +72,7 @@ $(document).ready(function() {
         </div>
       `;
 
-      var result = classTemplate(Gauntlet.GuildHall.classes().values());
+      var result = classTemplate(Gauntlet.GuildHall.classes.values());
       $(".professions__container").append(result);
     }
   })

@@ -26,6 +26,18 @@ gutil.ObjectExtensions = (() => {
     }
   });
 
+  o.attr = new Proxy(Object.defineProperty, {
+    apply: function (_target, _this, _args) {
+      _target(_this, _args[0], {
+        get: _args[1],
+        set: _args[2],
+        enumerable: true
+      });
+
+      return _this;
+    }
+  });
+
   // Used for defining an enumerable function
   o.def = new Proxy(Object.defineProperty, {
     apply: function (_target, _this, _args) {

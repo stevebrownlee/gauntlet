@@ -14,9 +14,11 @@ var Gauntlet = function (global) {
   });
 
   // Accessor for profession list
-  GuildHall.def("classes", function () {
-    return _internal(this).all_professions;
-  });
+  Object.defineProperty(GuildHall, "classes", {
+    get: function () {
+      return _internal(this).all_professions;
+    }
+  })
 
   GuildHall.def("load", function () {
     return new Promise((resolve, reject) => {

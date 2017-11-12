@@ -21,7 +21,7 @@ Gauntlet.help = (topic) => {
       case "s":
         console.clear();
         output += `Spell              Range        Effect         Defensive\n=========================================================\n`;
-        Gauntlet.Spellbook.spells().each(w => output += `${(w.id + " ".repeat(20)).slice(0, 19)}${((w.base_effect + " - " + (w.base_effect + w.effect_modifier)) + " ".repeat(13)).slice(0,13)}${(w.affected_trait + " ".repeat(15)).slice(0,15)}${w.defensive}\n`);
+        Gauntlet.Spellbook.spells.each(w => output += `${(w.id + " ".repeat(20)).slice(0, 19)}${((w.base_effect + " - " + (w.base_effect + w.effect_modifier)) + " ".repeat(13)).slice(0,13)}${(w.affected_trait + " ".repeat(15)).slice(0,15)}${w.defensive}\n`);
         break;
 
 

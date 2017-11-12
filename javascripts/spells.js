@@ -45,21 +45,21 @@ var Gauntlet = function (global) {
 
     // If a protection spell, set protection to calculated amount
     if (this.affected_trait === "protection") {
-      target.setProtection(total_effect);
+      target.protection = total_effect
 
     // All other spells reduce the corresponding trait on the target
     } else {
       switch (this.affected_trait) {
         case "health":
-          target.setHealth(target.getHealth() + total_effect);
+          target.health += total_effect;
           break;
 
         case "strength":
-          target.setStrength(target.getStrength() + total_effect);
+          target.strength += total_effect
           break;
 
         case "intellgence":
-          target.setIntelligence(target.getIntelligence() + total_effect);
+          target.intelligence += total_effect
           break;
 
         default:
@@ -85,14 +85,16 @@ var Gauntlet = function (global) {
 
   // Initialization sets up the private spell list array and name set
   Spellbook.def("init", function () {
-    _internal(this).spell_list = [];
+    _internal(this).contents = [];
     return this;
   });
 
   // Accessor for the spell list
-  Spellbook.def("spells", function () {
-    return _internal(this).spell_list;
-  });
+  Object.defineProperty(Spellbook, "spells", {
+    get: function () {
+      return _internal(this).contents
+    }
+  })
 
   // Loads spell properties from JSON file
   Spellbook.def("load", function () {
@@ -101,11 +103,11 @@ var Gauntlet = function (global) {
 
         // Iterate all spell objects in the JSON file
         response.spells.each(currentSpell =>
-          _internal(this).spell_list.push(gutil.compose(MasterSpell, currentSpell))
+          _internal(this).contents.push(gutil.compose(MasterSpell, currentSpell))
         );
 
         // Resolve the spell loading promise with the spell list
-        resolve(_internal(this).spell_list);
+        resolve(_internal(this).contents);
 
       }).fail((xhr, error, msg) => {
         reject(msg);
