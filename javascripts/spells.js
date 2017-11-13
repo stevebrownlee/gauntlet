@@ -2,7 +2,7 @@
 
 Gauntlet = function (global) {
   const _internal = gutil.privy.init() // Private store
-  
+
   // Create prototypal master spell. Add object extensions.
   let MasterSpell = Object.create(gutil.ObjectExtensions)
 
@@ -39,7 +39,7 @@ Gauntlet = function (global) {
 
     const critical = Math.floor(Math.random() * 100)
     if (critical > 95) {
-      console.log("%c** CRITICAL SPELL **", `color:#fff background-color:#000`)
+      console.log("%c** CRITICAL SPELL **", `color:#fff; background-color:#000`)
       total_effect *= 2
     }
 

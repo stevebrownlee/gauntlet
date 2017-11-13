@@ -45,7 +45,7 @@ Gauntlet = function ($$gauntlet) {
 
         // Calculate the damage
         attack = combatant.weapon.swing(modifier).at(target)
-        
+
         // Build attack result message
         result = `\n${combatant.name} hit ${target.name} `
         result += `in the ${target.limbs.random()} `
@@ -58,10 +58,10 @@ Gauntlet = function ($$gauntlet) {
 
     const generateHealthBar = (target) => {
       let percentage = Math.floor(target.health / target.startingHealth * 20)
-      
+
       if (percentage < 0) percentage = 0
       if (percentage > 20) percentage = 20
-      let healthBar = `%c[${'*'.repeat(percentage)}${' '.repeat(20 - percentage)}]`
+      let healthBar = `%c[${"*".repeat(percentage)}${" ".repeat(20 - percentage)}]`
 
       let barColor = null
       switch (true)
@@ -75,7 +75,7 @@ Gauntlet = function ($$gauntlet) {
         default:
           barColor = "slategrey"
       }
-      console.log(healthBar, `color:${barColor} background-color:gainsboro`)
+      console.log(healthBar, `color:${barColor}; background-color:gainsboro`)
     }
 
     if (this.console_output) {

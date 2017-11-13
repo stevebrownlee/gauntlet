@@ -58,4 +58,3 @@ Gauntlet = function (global) {
   return global
 
 }(Gauntlet || {})
-

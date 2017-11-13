@@ -88,7 +88,7 @@ Gauntlet = function (gauntlet) {
       } else {
         this[profession] = prof
       }
-  
+
       try {
         this[health] += this[profession].healthModifier
         this[strength] += this[profession].strengthModifier
@@ -96,13 +96,13 @@ Gauntlet = function (gauntlet) {
       } catch (ex) {
         console.error(ex, prof)
       }
-      
+
       return this
     }
   )
 
   .attr(
-    "weapon", 
+    "weapon",
     function () {
       return this[weapon]
     },
@@ -134,18 +134,18 @@ Gauntlet = function (gauntlet) {
   )
 
   .attr(
-    "strength", 
+    "strength",
     function () { return this[strength] },
-    function (str) { 
+    function (str) {
       this[strength] = str
       if (this[strength] < 10) this[strength] = 10
     }
   )
 
   .attr(
-    "intelligence", 
+    "intelligence",
     function () { return this[intelligence] },
-    function (int) { 
+    function (int) {
       this[intelligence] = int
       if (this[intelligence] < 10) this[intelligence] = 10
     }
@@ -164,8 +164,8 @@ Gauntlet = function (gauntlet) {
   )
 
   .attr(
-    "health", 
-    function () { return this[health] }, 
+    "health",
+    function () { return this[health] },
     function (h) { this[health] = h }
   )
 
