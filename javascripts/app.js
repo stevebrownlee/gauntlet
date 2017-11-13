@@ -166,22 +166,22 @@ $(document).ready(function() {
       }
     }
 
-    $(".battle--human").html(HumanCombatant.toString());
-    $(".battle--enemy").html(EnemyCombatant.toString());
+    $(".battle--human").html(HumanCombatant.toString())
+    $(".battle--enemy").html(EnemyCombatant.toString())
 
-    $("#battle-record").scrollTop(9999999);
+    $("#battle-record").scrollTop(9999999)
   }
 
   // Begin the battle
   function startCombat() {
-    EnemyCombatant = Gauntlet.Horde.random();
-    EnemyCombatant.equip();
+    EnemyCombatant = Gauntlet.Horde.random()
+    EnemyCombatant.equip()
 
-    $(".battle--human").html(HumanCombatant.toString());
-    $(".battle--enemy").html(EnemyCombatant.toString());
+    $(".battle--human").html(HumanCombatant.toString())
+    $(".battle--enemy").html(EnemyCombatant.toString())
 
-    battleground = Gauntlet.Battleground.init(HumanCombatant, EnemyCombatant);
-    battleTimer = window.setInterval(meleeRound, 2000);
+    battleground = Gauntlet.Battleground.init(HumanCombatant, EnemyCombatant)
+    battleTimer = window.setInterval(meleeRound, 2000)
   }
 
   /*
@@ -190,9 +190,9 @@ $(document).ready(function() {
     health, and a new opponent.
    */
   $(document).on("click", ".btn--another", function() {
-    $(".btn--another").remove();
-    startCombat();
-  });
+    $(".btn--another").remove()
+    startCombat()
+  })
 
   /*
     When the "Fight Again" button is clicked just start
@@ -200,19 +200,19 @@ $(document).ready(function() {
     health, and a new opponent.
    */
   $(document).on("click", ".btn--again", function() {
-    $(".btn--again").remove();
-    $(".card").hide();
-    $("#player-setup").show();
-    $("#battle-record").empty();
-    $("#player-name").focus();
-  });
+    $(".btn--again").remove()
+    $(".card").hide()
+    $("#player-setup").show()
+    $("#battle-record").empty()
+    $("#player-name").focus()
+  })
 
   /*
     When the back button clicked, move back a view
    */
   $(".card__back").click(function(e) {
-    let previousCard = $(this).attr("previous");
-    $(".card").hide();
-    $(`.${previousCard}`).show();
-  });
-});
+    let previousCard = $(this).attr("previous")
+    $(".card").hide()
+    $(`.${previousCard}`).show()
+  })
+})

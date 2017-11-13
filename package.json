@@ -9,6 +9,9 @@
   "author": "Steve Brownlee",
   "license": "MIT",
   "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
+    "grunt-contrib-watch": "^1.0.0",
     "sweet.js": "^2.2.1"
   }
 }
