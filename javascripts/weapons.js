@@ -1,6 +1,6 @@
 "use strict"
 
-var Gauntlet = function (global) {
+Gauntlet = function (global) {
   /*
     Base weapon object that all other specific weapons will
     have as their prototype.

@@ -1,6 +1,6 @@
 "use strict"
 
-var Gauntlet = function (gauntlet) {
+Gauntlet = function (gauntlet) {
   // Symbols for object properties
   const intelligence = Symbol()
   const species = Symbol()

@@ -1,46 +1,46 @@
-"use strict";
+"use strict"
 
-var Gauntlet = function (global) {
-  const _internal = gutil.privy.init(); // Private store
+Gauntlet = function (global) {
+  const _internal = gutil.privy.init() // Private store
   
   // Create prototypal master spell. Add object extensions.
-  let MasterSpell = Object.create(gutil.ObjectExtensions);
+  let MasterSpell = Object.create(gutil.ObjectExtensions)
 
   // String representation of master spell
   MasterSpell.def("toString", function () {
-    return `${ this.label } of ${ this.elements.random() }`;
-  });
+    return `${ this.label } of ${ this.elements.random() }`
+  })
 
   /*
     Reading the spell modifies the damage based on 
     the mage's intelligence
   */
   MasterSpell.def("read", function (modifier) {
-    this.intelligence_modifier = modifier;
-    return this;
-  });
+    this.intelligence_modifier = modifier
+    return this
+  })
 
   /*
     Casting the spell calculates total effect.
   */
   MasterSpell.def("cast", function () {
-    this.effect = Math.round(Math.random() * this.base_effect + this.effect_modifier);
-    return this;
-  });
+    this.effect = Math.round(Math.random() * this.base_effect + this.effect_modifier)
+    return this
+  })
 
   /*
     The `at` method applies the effect on the appropriate player
   */
   MasterSpell.def("at", function (target) {
-    this.target = target;
+    this.target = target
     // TODO: Add critical chance
-    let total_effect = Math.round(this.effect + (this.intelligence_modifier || 0));
-    total_effect *= (this.augment) ? 1 : -1;
+    let total_effect = Math.round(this.effect + (this.intelligence_modifier || 0))
+    total_effect *= (this.augment) ? 1 : -1
 
-    const critical = Math.floor(Math.random() * 100);
+    const critical = Math.floor(Math.random() * 100)
     if (critical > 95) {
-      console.log("%c** CRITICAL SPELL **", `color:#fff; background-color:#000;`);
-      total_effect *= 2;
+      console.log("%c** CRITICAL SPELL **", `color:#fff background-color:#000`)
+      total_effect *= 2
     }
 
     // If a protection spell, set protection to calculated amount
@@ -51,19 +51,19 @@ var Gauntlet = function (global) {
     } else {
       switch (this.affected_trait) {
         case "health":
-          target.health += total_effect;
-          break;
+          target.health += total_effect
+          break
 
         case "strength":
           target.strength += total_effect
-          break;
+          break
 
         case "intellgence":
           target.intelligence += total_effect
-          break;
+          break
 
         default:
-          break;
+          break
       }
     }
 
@@ -73,21 +73,21 @@ var Gauntlet = function (global) {
       target: this.target.name,
       effect: this.affected_trait,
       damage: total_effect
-    };
-  });
+    }
+  })
 
-  MasterSpell.property("name", "").property("base_damage", 0);
-  MasterSpell.property("effect", 0).property("target", null);
-  MasterSpell.property("elements", ["lightning", "fire", "water", "earth", "mysticism"]);
+  MasterSpell.property("name", "").property("base_damage", 0)
+  MasterSpell.property("effect", 0).property("target", null)
+  MasterSpell.property("elements", ["lightning", "fire", "water", "earth", "mysticism"])
 
   // Spellbook will hold all defined spells
-  let Spellbook = gutil.compose(Object.create(null), gutil.ObjectExtensions);
+  let Spellbook = gutil.compose(Object.create(null), gutil.ObjectExtensions)
 
   // Initialization sets up the private spell list array and name set
   Spellbook.def("init", function () {
-    _internal(this).contents = [];
-    return this;
-  });
+    _internal(this).contents = []
+    return this
+  })
 
   // Accessor for the spell list
   Object.defineProperty(Spellbook, "spells", {
@@ -104,18 +104,18 @@ var Gauntlet = function (global) {
         // Iterate all spell objects in the JSON file
         response.spells.each(currentSpell =>
           _internal(this).contents.push(gutil.compose(MasterSpell, currentSpell))
-        );
+        )
 
         // Resolve the spell loading promise with the spell list
-        resolve(_internal(this).contents);
+        resolve(_internal(this).contents)
 
       }).fail((xhr, error, msg) => {
-        reject(msg);
-      });
-    });
-  });
+        reject(msg)
+      })
+    })
+  })
 
-  global.Spellbook = Spellbook.init();
-  return global;
+  global.Spellbook = Spellbook.init()
+  return global
 
-}(Gauntlet || {});
+}(Gauntlet || {})

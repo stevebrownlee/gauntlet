@@ -1,6 +1,6 @@
 "use strict"
 
-var Gauntlet = function (global) {
+Gauntlet = function (global) {
   const _internal = gutil.privy.init() // Private store
 
   // The Horde will contain all monster combatants
