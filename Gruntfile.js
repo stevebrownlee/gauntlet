@@ -14,7 +14,8 @@ module.exports = function(grunt) {
             },
             uglify: {
                 options: {
-                    banner: "/*! <%= pkg.name %> <%= grunt.template.today('yyyy-mm-dd') %> */\n"
+                    banner: "/*! <%= pkg.name %> <%= grunt.template.today('yyyy-mm-dd') %> */\n",
+                    sourceMap: true
                 },
                 build: {
                     files: [{
@@ -34,5 +35,6 @@ module.exports = function(grunt) {
 
         // Default task(s).
         grunt.registerTask("default", ["uglify", "watch"]);
+        grunt.registerTask("build", ["uglify"]);
 
     };
