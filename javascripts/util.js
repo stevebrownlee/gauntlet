@@ -55,9 +55,12 @@ gutil.ObjectExtensions = (() => {
 
 // Set up prototype chain and concatenative inheritance
 gutil.compose = (proto, ...args) => {
-  let target = Object.assign(Object.create(proto), ...args)
+  let target = Object.assign(Object.create(proto), args)
   return target
 }
+
+// TODO: Create an event hub that can be used in any application for listening/dispatching events
+gutil.eventHub = new Set();
 
 // Get any URL parameter
 gutil.getURLParameter = (name) => {

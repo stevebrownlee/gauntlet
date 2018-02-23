@@ -32,7 +32,7 @@ Gauntlet = function (global) {
           // Define the prototype for the new profession
           let prototype_for_object = current_class.prototype === null
               ? null
-              : _internal(this).all_professions.get(current_class.prototype)
+              : internal(this).all_professions.get(current_class.prototype)
 
           // Create the new profession
           let profession = gutil.compose(prototype_for_object,

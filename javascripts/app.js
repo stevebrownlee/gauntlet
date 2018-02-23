@@ -40,7 +40,7 @@
 }).catch(console.error)
 
 $(document).ready(function() {
-  
+
   const isConsoleGame = gutil.getURLParameter("console") === "true";
 
   // Await the loading of the professions from the Guild Hall module

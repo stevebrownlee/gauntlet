@@ -44,7 +44,7 @@ Gauntlet = function (global) {
 
   // Load all monsters from JSON file
   Horde.def("load", function () {
-    return fetch("./data/horde.json")
+    fetch("./data/horde.json")
       .then(response => response.json())
       .then(json => {
         /*
