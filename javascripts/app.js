@@ -54,15 +54,15 @@ $(document).ready(function() {
       let rower = 0
       const classTemplate = classes => gutil.html`
         <div class="row">
-        ${[...classes].map((c, i) => {
-          if (c.playable) {
+        ${[...classes].map(cls => {
+          if (cls.playable) {
             if (!(++rower%4)) return '</div><div class="row">'
             return gutil.html`
               <div class="col-sm-4">
                 <div class="card__button">
                   <a class="class__link btn btn--big btn--blue" href="#">
                     <span class="btn__prompt">&gt</span>
-                    <span class="btn__text">${c.label}</span>
+                    <span class="btn__text">${cls.label}</span>
                   </a>
                 </div>
               </div>
