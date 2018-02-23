@@ -39,7 +39,7 @@ Gauntlet = function (global) {
 
     const critical = Math.floor(Math.random() * 100)
     if (critical > 95) {
-      console.log("%c** CRITICAL SPELL **", `color:#fff; background-color:#000`)
+      console.log("%c** CRITICAL SPELL **", `color:#fff; background-color:#000`) // eslint-disable-line quotes
       total_effect *= 2
     }
 
@@ -98,21 +98,13 @@ Gauntlet = function (global) {
 
   // Loads spell properties from JSON file
   Spellbook.def("load", function () {
-    return new Promise((resolve, reject) => {
-      $.ajax({url: "./data/spells.json"}).done(response => {
-
-        // Iterate all spell objects in the JSON file
-        response.spells.each(currentSpell =>
+    return fetch("./data/spells.json")
+      .then(response => response.json())
+      .then(json => {
+        json.spells.each(currentSpell =>
           _internal(this).contents.push(gutil.compose(MasterSpell, currentSpell))
         )
-
-        // Resolve the spell loading promise with the spell list
-        resolve(_internal(this).contents)
-
-      }).fail((xhr, error, msg) => {
-        reject(msg)
       })
-    })
   })
 
   global.Spellbook = Spellbook.init()

@@ -61,8 +61,8 @@ gutil.compose = (proto, ...args) => {
 
 // Get any URL parameter
 gutil.getURLParameter = (name) => {
-  return decodeURIComponent((new RegExp("[?|&]" + name + "=" + "([^&]+?)(&|#||$)").exec(location.search) || [null, ""])[1].replace(/\+/g, "%20")) || null
-}
+  return decodeURIComponent((new RegExp("[?|&]" + name + "=" + "([^&;]+?)(&|#|;|$)").exec(location.search) || [null, ""])[1].replace(/\+/g, "%20")) || null;
+};
 
 gutil.html = (templateObject, ...substs) => {
     const raw = templateObject.raw
@@ -70,10 +70,10 @@ gutil.html = (templateObject, ...substs) => {
 
     substs.each((subst, i) => { // Run the substitutions
         let lit = raw[i]
-        if (Array.isArray(subst)) subst = subst.join("")
-        
+        if (Array.isArray(subst)) subst = subst.join("");
+
         if (lit.endsWith("!")) {
-            subst = (subst) => subst.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/`/g, '&#96;')
+            subst = (subst) => subst.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;").replace(/`/g, "&#96;")
             lit = lit.slice(0, -1)
         }
         result += lit

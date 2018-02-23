@@ -40,6 +40,7 @@
 }).catch(console.error)
 
 $(document).ready(function() {
+  
   const isConsoleGame = gutil.getURLParameter("console") === "true";
 
   // Await the loading of the professions from the Guild Hall module
@@ -50,7 +51,6 @@ $(document).ready(function() {
     let cellTracker = 1
 
     if (!isConsoleGame) {
-
       let rower = 0
       const classTemplate = classes => gutil.html`
         <div class="row">
@@ -72,7 +72,7 @@ $(document).ready(function() {
         </div>
       `
 
-      var result = classTemplate(Gauntlet.GuildHall.classes.values())
+      const result = classTemplate(Gauntlet.GuildHall.classes.values())
       $(".professions__container").append(result)
     }
   })
@@ -134,7 +134,7 @@ $(document).ready(function() {
         </div>
       `
 
-      var result = wpnTemplate(chosenProfession.allowedWeapons)
+      const result = wpnTemplate(chosenProfession.allowedWeapons)
       weaponEl.append(result)
       $(".card--weapon").show()
     }

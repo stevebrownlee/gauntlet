@@ -15,7 +15,6 @@
       "label": "Sith Lord",
       "healthModifier": 0,
       "intelligenceModifier": 20,
-      "intelligenceModifier": 0,
       "magical": false,
       "prototype": "PlayerClass",
       "allowedWeapons": ["LightSaber"],

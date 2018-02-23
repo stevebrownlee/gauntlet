@@ -63,22 +63,15 @@ Gauntlet = function (global) {
 
   // Method to load the weapons from the JSON file
   .def("load", function () {
-    return new Promise((resolve, reject) => {
-      $.ajax({url: "./data/weapons.json"}).done(response => {
-        // Iterate all weapon objects in the JSON file
-        response.weapons.each(weapon =>
+    return fetch("./data/weapons.json")
+      .then(response => response.json())
+      .then(json => {
+        json.weapons.each(weapon =>
           _internal(this).weapon_list.push(
             gutil.compose(Weapon, weapon)
           )
         )
-
-        // Resolve the weapon loading promise with the weapon list
-        resolve(_internal(this).weapon_list)
-
-      }).fail((xhr, error, msg) => {
-        reject(msg)
       })
-    })
   })
 
   global.Armory = Armory.init()

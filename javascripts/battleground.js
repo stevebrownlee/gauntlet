@@ -1,10 +1,10 @@
 "use strict"
 
-Gauntlet = function ($$gauntlet) {
+Gauntlet = function (global) {
 
-  $$gauntlet.Battleground = Object.create(null)
+  global.Battleground = Object.create(null)
 
-  $$gauntlet.Battleground.init = function (human_combatant, enemy_combatant, console_output = false) {
+  global.Battleground.init = function (human_combatant, enemy_combatant, console_output = false) {
     this.human = human_combatant
     this.human.startingHealth = this.human.health
 
@@ -16,7 +16,7 @@ Gauntlet = function ($$gauntlet) {
     return this
   }
 
-  $$gauntlet.Battleground.melee = function () {
+  global.Battleground.melee = function () {
     if (this.console_output) {
       console.clear()
     }
@@ -128,6 +128,6 @@ Gauntlet = function ($$gauntlet) {
     return true
   }
 
-  return $$gauntlet
+  return global
 
 }(Gauntlet || {})

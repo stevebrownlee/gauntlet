@@ -44,13 +44,13 @@ Gauntlet = function (global) {
 
   // Load all monsters from JSON file
   Horde.def("load", function () {
-    return new Promise((resolve, reject) => {
-      $.ajax({url: "./data/horde.json"}).done(response => {
-
+    return fetch("./data/horde.json")
+      .then(response => response.json())
+      .then(json => {
         /*
           Load the names array in the JSON file into a Set
           */
-        response.names.each(name => {
+         json.names.each(name => {
           _internal(this).names.add(name)
         })
 
@@ -60,7 +60,7 @@ Gauntlet = function (global) {
           since all specific enemies inherit from Monster at
           this point.
           */
-        response.classes.each(monster => {
+        json.classes.each(monster => {
           let object_prototype
 
           // The base monster will always have Player as its prototype
@@ -80,14 +80,7 @@ Gauntlet = function (global) {
 
           // Add creature to the horde Map
           _internal(this).horde.set(monster.id, monster_for_map)
-        })
 
-        // Resolve the promise
-        resolve()
-
-      }).fail((xhr, error, msg) => {
-        console.error(msg)
-        reject()
       })
     })
   })
