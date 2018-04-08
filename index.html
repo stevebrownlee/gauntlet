@@ -1,87 +1,84 @@
 <!doctype html>
 
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Gauntlet</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-  <link rel="stylesheet" type="text/css" href="./styles/gauntlet.css">
+<head>
+    <meta charset="utf-8">
+    <title>Gauntlet</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="./styles/gauntlet.css">
 </head>
 
 <body>
 
-  <article id="game-container">
+    <article id="game-container">
 
-    <section id="player-setup" class="card card--name">
-      <div class="card__prompt">
-        <h1>gauntlet</h1>
-        <div class="field">
-          <input placeholder="RECORD YOUR NAME" type="text" autofocus="true" id="player-name" class="field__textinput">
-        </div>
-      </div>
-    </section>
+        <section id="player-setup" class="card card--name">
+            <div class="card__prompt">
+                <h1>gauntlet</h1>
+                <div class="field">
+                    <input placeholder="RECORD YOUR NAME" type="text" autofocus="true" id="player-name" class="field__textinput">
+                </div>
+            </div>
+        </section>
 
-    <section id="class-select" class="card card--class transparent">
-      <div class="card__prompt">
-        <div>CHOOSE YOUR PATH</div>
-        <div>
-          <a class="card__back btn btn--small"
-             href="#"
-             previous="card--name">
-            <span class="btn__prompt">&lt;</span>
-            <span class="btn__text">Back</span>
-          </a>
-        </div>
-      </div>
+        <section id="class-select" class="card card--class transparent">
+            <div class="card__prompt">
+                <div>CHOOSE YOUR PATH</div>
+                <div>
+                    <a class="card__back btn btn--small" href="#" previous="card--name">
+                        <span class="btn__prompt">&lt;</span>
+                        <span class="btn__text">Back</span>
+                    </a>
+                </div>
+            </div>
 
-      <div class="container-fluid professions__container"></div>
-    </section>
+            <div class="container-fluid professions__container"></div>
+        </section>
 
-    <section id="weapon-select" class="card card--weapon transparent">
-      <div class="card__prompt">
-        <div>choose your weapon</div>
-        <div>
-          <a class="card__back btn btn--small"
-             href="#"
-             previous="card--class">
-            <span class="btn__prompt">&lt;</span>
-            <span class="btn__text">Back</span>
-          </a>
-        </div>
-      </div>
-    </section>
+        <section id="weapon-select" class="card card--weapon transparent">
+            <div class="card__prompt">
+                <div>choose your weapon</div>
+                <div>
+                    <a class="card__back btn btn--small" href="#" previous="card--class">
+                        <span class="btn__prompt">&lt;</span>
+                        <span class="btn__text">Back</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    <section id="battleground" class="card card--battleground transparent">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="battle--human"></div>
-        </div>
-        <div class="col-sm-6">
-          <div class="battle--enemy"></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12" id="battle-record"></div>
-      </div>
-    </section>
+        <section id="battleground" class="card card--battleground transparent">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="battle--human"></div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="battle--enemy"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" id="battle-record"></div>
+            </div>
+        </section>
 
-  </article>
+    </article>
 
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-  <script src="./build/util.min.js"></script>
-  <script src="./build/Gauntlet.min.js"></script>
-  <script src="./build/weapons.min.js"></script>
-  <script src="./build/spells.min.js"></script>
-  <script src="./build/classes.min.js"></script>
-  <script src="./build/player.min.js"></script>
-  <script src="./build/horde.min.js"></script>
-  <script src="./build/battleground.min.js"></script>
-  <script src="./build/app.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="./build/util.min.js"></script>
+    <script src="./build/Gauntlet.min.js"></script>
+    <script src="./build/weapons.min.js"></script>
+    <script src="./build/spells.min.js"></script>
+    <script src="./build/classes.min.js"></script>
+    <script src="./build/player.min.js"></script>
+    <script src="./build/horde.min.js"></script>
+    <script src="./build/battleground.min.js"></script>
+    <script src="./build/app.min.js"></script>
 
 </body>
 </html>

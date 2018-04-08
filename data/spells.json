@@ -1,157 +1,157 @@
 {
-  "spells": [
-    {
-      "id": "MysticSalve",
-      "label": "mystic salve",
-      "affected_trait": "health",
-      "base_effect": 1,
-      "effect_modifier": 2,
-      "augment": false,
-      "defensive": true
-    },
-    {
-      "id": "Weakness",
-      "label": "weakness",
-      "affected_trait": "strength",
-      "base_effect": 5,
-      "effect_modifier": 5,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Feeblemind",
-      "label": "feeblemind",
-      "affected_trait": "intelligence",
-      "base_effect": 10,
-      "effect_modifier": 5,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Shield",
-      "label": "shield",
-      "affected_trait": "protection",
-      "base_effect": 2,
-      "effect_modifier": 3,
-      "augment": true,
-      "defensive": true
-    },
-    {
-      "id": "Wall",
-      "label": "wall",
-      "affected_trait": "protection",
-      "base_effect": 4,
-      "effect_modifier": 4,
-      "augment": true,
-      "defensive": true
-    },
-    {
-      "id": "MagicDart",
-      "label": "mighty dart",
-      "affected_trait": "health",
-      "base_effect": 2,
-      "effect_modifier": 4,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Missile",
-      "label": "magic missile",
-      "affected_trait": "health",
-      "base_effect": 5,
-      "effect_modifier": 4,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Sphere",
-      "label": "rolling sphere",
-      "affected_trait": "health",
-      "base_effect": 3,
-      "effect_modifier": 8,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Hammer",
-      "label": "giant hammer",
-      "affected_trait": "health",
-      "base_effect": 8,
-      "effect_modifier": 5,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Arrow",
-      "label": "arrow",
-      "affected_trait": "health",
-      "base_effect": 8,
-      "effect_modifier": 8,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Bolt",
-      "label": "jagged bolt",
-      "affected_trait": "health",
-      "base_effect": 10,
-      "effect_modifier": 7,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Animus",
-      "label": "animal spirit",
-      "affected_trait": "health",
-      "base_effect": 5,
-      "effect_modifier": 5,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Swarm",
-      "label": "insect swarm",
-      "affected_trait": "health",
-      "base_effect": 15,
-      "effect_modifier": 10,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Maelstrom",
-      "label": "maelstrom",
-      "affected_trait": "health",
-      "base_effect": 20,
-      "effect_modifier": 10,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Storm",
-      "label": "violent storm",
-      "affected_trait": "health",
-      "base_effect": 12,
-      "effect_modifier": 9,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Column",
-      "label": "column",
-      "affected_trait": "health",
-      "base_effect": 4,
-      "effect_modifier": 6,
-      "augment": false,
-      "defensive": false
-    },
-    {
-      "id": "Beam",
-      "label": "laser beam",
-      "affected_trait": "health",
-      "base_effect": 6,
-      "effect_modifier": 8,
-      "augment": false,
-      "defensive": false
-    }
-  ]
+    "spells": [
+        {
+            "id": "MysticSalve",
+            "label": "mystic salve",
+            "affected_trait": "health",
+            "base_effect": 1,
+            "effect_modifier": 2,
+            "augment": false,
+            "defensive": true
+        },
+        {
+            "id": "Weakness",
+            "label": "weakness",
+            "affected_trait": "strength",
+            "base_effect": 5,
+            "effect_modifier": 5,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Feeblemind",
+            "label": "feeblemind",
+            "affected_trait": "intelligence",
+            "base_effect": 10,
+            "effect_modifier": 5,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Shield",
+            "label": "shield",
+            "affected_trait": "protection",
+            "base_effect": 2,
+            "effect_modifier": 3,
+            "augment": true,
+            "defensive": true
+        },
+        {
+            "id": "Wall",
+            "label": "wall",
+            "affected_trait": "protection",
+            "base_effect": 4,
+            "effect_modifier": 4,
+            "augment": true,
+            "defensive": true
+        },
+        {
+            "id": "MagicDart",
+            "label": "mighty dart",
+            "affected_trait": "health",
+            "base_effect": 2,
+            "effect_modifier": 4,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Missile",
+            "label": "magic missile",
+            "affected_trait": "health",
+            "base_effect": 5,
+            "effect_modifier": 4,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Sphere",
+            "label": "rolling sphere",
+            "affected_trait": "health",
+            "base_effect": 3,
+            "effect_modifier": 8,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Hammer",
+            "label": "giant hammer",
+            "affected_trait": "health",
+            "base_effect": 8,
+            "effect_modifier": 5,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Arrow",
+            "label": "arrow",
+            "affected_trait": "health",
+            "base_effect": 8,
+            "effect_modifier": 8,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Bolt",
+            "label": "jagged bolt",
+            "affected_trait": "health",
+            "base_effect": 10,
+            "effect_modifier": 7,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Animus",
+            "label": "animal spirit",
+            "affected_trait": "health",
+            "base_effect": 5,
+            "effect_modifier": 5,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Swarm",
+            "label": "insect swarm",
+            "affected_trait": "health",
+            "base_effect": 15,
+            "effect_modifier": 10,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Maelstrom",
+            "label": "maelstrom",
+            "affected_trait": "health",
+            "base_effect": 20,
+            "effect_modifier": 10,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Storm",
+            "label": "violent storm",
+            "affected_trait": "health",
+            "base_effect": 12,
+            "effect_modifier": 9,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Column",
+            "label": "column",
+            "affected_trait": "health",
+            "base_effect": 4,
+            "effect_modifier": 6,
+            "augment": false,
+            "defensive": false
+        },
+        {
+            "id": "Beam",
+            "label": "laser beam",
+            "affected_trait": "health",
+            "base_effect": 6,
+            "effect_modifier": 8,
+            "augment": false,
+            "defensive": false
+        }
+    ]
 }
