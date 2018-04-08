@@ -1,5 +1,5 @@
-bower_components
 node_modules
 build
 .vscode
 npm-debug.log
+.tmp
