@@ -6,10 +6,10 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: ["./javascripts/**/*.js", "!node_modules/**/*.js", "!bower_components/**/*.js"],
-                tasks: ["uglify"],
+                tasks: ["concat:squash", "uglify"],
                 options: {
                     spawn: false,
-                },
+                }
             }
         },
         uglify: {

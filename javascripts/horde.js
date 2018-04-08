@@ -4,42 +4,55 @@ Gauntlet = function (global) {
     const _internal = gutil.privy.init() // Private store
 
     // The Horde will contain all monster combatants
-    const Horde = Object.create(gutil.ObjectExtensions)
+    const Horde = Object.create(gutil.ObjectExtensions, {
+        init: {
+            value: function () {
+                _internal(this).horde = new Map()
+                _internal(this).names = new Set()
+                _internal(this)._randomGenerator = function* () {
+                    let randomSoldier = null
 
-    // Initialization
-    Horde.def("init", function () {
-        _internal(this).horde = new Map()
-        _internal(this).names = new Set()
-        return this
-    })
+                    while (true) {
+                        /*
+                        The Monster object needs to remain in the horde Map to
+                        maintain the prototype chain, but it can't be the basis
+                        for an actual soldier instance.
+                        */
+                       do {
+                           randomSoldier = this.horde.random()
+                        } while (randomSoldier.id === "Monster")
 
-    // Return all monsters
-    Horde.def("all", function () {
-        return _internal(this).horde
-    })
+                        // Give the soldier a random name
+                        randomSoldier.name = this.names.random()
 
-    // Get a specific type of monster
-    Horde.def("soldier", function (type) {
-        return Object.create(_internal(this).horde.get(type))
-    })
+                        yield randomSoldier
+                    }
 
-    // Get a random monster
-    Horde.def("random", function () {
-        let randomSoldier = null
+                }
 
-        /*
-          The Monster object needs to remain in the horde Map to
-          maintain the prototype chain, but it can't be the basis
-          for an actual soldier instance.
-          */
-        do {
-            randomSoldier = _internal(this).horde.random()
-        } while (randomSoldier.id === "Monster")
+                // Create instance of random generator function
+                _internal(this)._randomizer = _internal(this)._randomGenerator()
 
-        // Give the soldier a random name
-        randomSoldier.name = _internal(this).names.random()
-
-        return randomSoldier
+                // Return object instance
+                return this
+            }
+        },
+        all: {
+            get: function () {
+                return _internal(this).horde
+            },
+            set: () => null
+        },
+        soldier: {
+            function (type) {
+                return Object.create(_internal(this).horde.get(type))
+            }
+        },
+        random: {
+            value: function () {
+                return _internal(this)._randomizer.next().value
+            }
+        }
     })
 
     // Load all monsters from JSON file
