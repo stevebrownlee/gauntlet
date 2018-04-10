@@ -37,14 +37,8 @@ Gauntlet = function (global) {
                 return this
             }
         },
-        all: {
-            get: function () {
-                return _internal(this).horde
-            },
-            set: () => null
-        },
         soldier: {
-            function (type) {
+            value: function (type) {
                 return Object.create(_internal(this).horde.get(type))
             }
         },
@@ -54,6 +48,19 @@ Gauntlet = function (global) {
             }
         }
     })
+
+    /**
+     * Make the Horde object iterable. Yields individual monsters
+     * from the private `horde` Map
+     */
+    Horde[Symbol.iterator] = function* () {
+        const names = _internal(this).horde.values()
+        let name = null
+        do {
+            name = names.next().value
+            if (typeof name !== "undefined") yield name
+        } while (typeof name !== "undefined")
+    }
 
     // Load all monsters from JSON file
     Horde.def("load", function () {

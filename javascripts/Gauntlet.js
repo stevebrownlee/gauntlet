@@ -30,7 +30,12 @@ let Gauntlet = Object.create(gutil.ObjectExtensions, {
                     case "m":
                         console.clear()
                         output += "Species        Mods: Health   Strength   Intelligence\n=====================================================\n"
-                        Gauntlet.Horde.all().each(w => output += `${(w.species + " ".repeat(22)).slice(0, 21)}${(w.healthModifier + " ".repeat(10)).slice(0, 9)}${(w.strengthModifier + " ".repeat(12)).slice(0, 11)}${(w.intelligenceModifier + " ".repeat(12)).slice(0, 11)}\n`)
+                        for (let m of Gauntlet.Horde) {
+                            output += `${(m.species + " ".repeat(22)).slice(0, 21)}`
+                            output += `${(m.healthModifier + " ".repeat(10)).slice(0, 9)}`
+                            output += `${(m.strengthModifier + " ".repeat(12)).slice(0, 11)}`
+                            output += `${(m.intelligenceModifier + " ".repeat(12)).slice(0, 11)}\n`
+                        }
                         break
                 }
                 console.log(output)
