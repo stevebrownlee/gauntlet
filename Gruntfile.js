@@ -37,7 +37,8 @@ module.exports = function (grunt) {
                 src: [
                     'javascripts/util.js', 'javascripts/Gauntlet.js', 'javascripts/player.js',
                     'javascripts/weapons.js', 'javascripts/battleground.js', 'javascripts/classes.js',
-                    'javascripts/horde.js', 'javascripts/spells.js', 'javascripts/app.js'
+                    'javascripts/horde.js', 'javascripts/spells.js', 'javascripts/app.js',
+                    'javascripts/templates.js'
                 ],
                 dest: '.tmp/main.js'
             }

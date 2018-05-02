@@ -1,0 +1,71 @@
+:root {
+    --button-font-color: rgb(255, 255, 255);
+    --dark-gold: rgb(223, 186, 1);
+    --bright-gold: rgb(243, 197, 0);
+    --dark-red: rgb(223, 54, 46);
+    --bright-red: rgb(255, 65, 55);
+    --dark-blue: rgb(0, 104, 194);
+    --bright-blue: rgb(0, 116, 218);
+}
+
+.btn {
+  text-decoration: none;
+  background-color: white;
+  color: #888;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 10px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 10px 5px;
+  min-width: 260px;
+}
+
+.btn--orange {
+  border-color: var(--dark-red);
+  color: var(--button-font-color);
+  background-color: var(--bright-red);
+}
+
+.btn--blue {
+  border-color: var(--dark-blue);
+  color: var(--button-font-color);
+  background-color: var(--bright-blue);
+}
+
+.btn--yellow {
+  border-color: var(--dark-gold);
+  color: var(--button-font-color);
+  background-color: var(--bright-gold);
+}
+
+.btn--big {
+  font-size: 28px;
+  padding: 10px;
+  font-weight: 400;
+}
+
+.btn--small {
+  min-width: 50px;
+}
+
+.btn__prompt {
+  background-color: white;
+  color: #fff;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: -10px;
+  font-weight: 600;
+  background-color: #333;
+  opacity: .4;
+  border-radius: 5px 0 0 5px;
+  left: 37px;
+  float: left;
+}
+
+.btn__text {
+  padding: 0 50px 0 20px;
+  border-radius: 0 5px 5px 0;
+}
+

@@ -113,30 +113,11 @@ $(document).ready(function () {
             $(".card--battleground").show()
             startCombat()
         } else {
-            let weaponEl = $("#weapon-select").children(".card__prompt")
             $(".weapons").remove()
 
-            const wpnTemplate = weapons => gutil.html`
-                <div class="row weapons">
-                    ${[...weapons].map((weapon, i) => {
-                    let wpn = Gauntlet.Armory.weapons.find(w => w.id === weapon).toString()
-                    if (!(i % 3)) return '</div><div class="row weapons">'
-                    return gutil.html`
-                            <div class="col-sm-6">
-                                <div class="card__button">
-                                    <a class="weapon__link btn btn--big btn--blue" href="#">
-                                        <span class="btn__prompt">&gt</span>
-                                        <span class="btn__text weapon__name" weapon=${weapon}>${wpn}</span>
-                                    </a>
-                                </div>
-                            </div>
-                        `
-                })}
-                </div>
-            `
-
-            const result = wpnTemplate(chosenProfession.allowedWeapons)
-            weaponEl.append(result)
+            $("#weapon-select")
+                .children(".card__prompt")
+                .append(Gauntlet.HTMLTemplates.weaponList(chosenProfession.allowedWeapons))
             $(".card--weapon").show()
         }
     })

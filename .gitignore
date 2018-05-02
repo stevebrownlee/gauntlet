@@ -3,3 +3,4 @@ build
 .vscode
 npm-debug.log
 .tmp
+dist
