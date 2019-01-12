@@ -49,8 +49,6 @@ $(document).ready(function () {
         await Gauntlet.GuildHall.load()
     })().then(() => {
         // Populate the professions view
-        let cellTracker = 1
-
         if (!isConsoleGame) {
             let rower = 0
             const classTemplate = classes => gutil.html`
@@ -86,7 +84,6 @@ $(document).ready(function () {
     let chosenProfession = null
     let chosenWeapon = null
     let battleground = null
-    let continueBattle = true
     let battleTimer
 
     // Show player name view initially
