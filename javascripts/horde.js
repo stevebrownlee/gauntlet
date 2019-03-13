@@ -54,12 +54,7 @@ Gauntlet = function (global) {
      * from the private `horde` Map
      */
     Horde[Symbol.iterator] = function* () {
-        const names = _internal(this).horde.values()
-        let name = null
-        do {
-            name = names.next().value
-            if (typeof name !== "undefined") yield name
-        } while (typeof name !== "undefined")
+        yield* [..._internal(this).horde.values()]
     }
 
     // Load all monsters from JSON file

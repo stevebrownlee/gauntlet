@@ -7,9 +7,12 @@ Gauntlet = function (global) {
     */
     const Weapon = Object.create(gutil.ObjectExtensions)
 
-    Weapon.property("id", "nothing").property("label", "bare hands")
-        .property("hands", 2).property("base_damage", 1)
-        .property("ranged", false).property("poisoned", false)
+    Weapon.property("id", "nothing")
+          .property("label", "bare hands")
+          .property("hands", 2)
+          .property("base_damage", 1)
+          .property("ranged", false)
+          .property("poisoned", false)
 
     // Swing method modifies the damage based on wielder strength
     Weapon.def("swing", function (modifier) {
@@ -57,9 +60,6 @@ Gauntlet = function (global) {
         _internal(this).weapon_list = []
         return this
     })
-    .attr("weapons", function () {
-        return _internal(this).weapon_list
-    }, () => null)
 
     // Method to load the weapons from the JSON file
     .def("load", function () {
@@ -73,6 +73,14 @@ Gauntlet = function (global) {
                 )
             })
     })
+
+    /**
+     * Make the Horde object iterable. Yields individual monsters
+     * from the private `horde` Map
+     */
+    Armory[Symbol.iterator] = function* () {
+        yield* [..._internal(this).weapon_list]
+    }
 
     global.Armory = Armory.init()
     return global

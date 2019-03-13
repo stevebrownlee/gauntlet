@@ -11,10 +11,10 @@ let gutil = Object.create(null)
         foo.property("propOne", 1).property("prop2", 2).def("fn", () => ({}))
 */
 gutil.ObjectExtensions = (() => {
-    const o = Object.create(null)
+    const proto = Object.create(null)
 
     // Used for defining a writable/enumerable property
-    o.property = new Proxy(Object.defineProperty, {
+    proto.property = new Proxy(Object.defineProperty, {
         apply: function (_target, _this, _args) {
             _target(_this, _args[0], {
                 value: _args[1],
@@ -26,7 +26,7 @@ gutil.ObjectExtensions = (() => {
         }
     });
 
-    o.attr = new Proxy(Object.defineProperty, {
+    proto.attr = new Proxy(Object.defineProperty, {
         apply: function (_target, _this, _args) {
             _target(_this, _args[0], {
                 get: _args[1],
@@ -39,7 +39,7 @@ gutil.ObjectExtensions = (() => {
     })
 
     // Used for defining an enumerable function
-    o.def = new Proxy(Object.defineProperty, {
+    proto.def = new Proxy(Object.defineProperty, {
         apply: function (_target, _this, _args) {
             _target(_this, _args[0], {
                 value: _args[1],
@@ -50,7 +50,7 @@ gutil.ObjectExtensions = (() => {
         }
     })
 
-    return Object.freeze(o)
+    return Object.freeze(proto)
 })();
 
 // Set up prototype chain and concatenative inheritance

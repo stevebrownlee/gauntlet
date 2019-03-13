@@ -6,6 +6,12 @@ Gauntlet = function (global) {
     // Create prototypal master spell. Add object extensions.
     let MasterSpell = Object.create(gutil.ObjectExtensions)
 
+    MasterSpell.property("name", "")
+        .property("base_damage", 0)
+        .property("effect", 0)
+        .property("target", null)
+        .property("elements", ["lightning", "fire", "water", "earth", "mysticism"])
+
     // String representation of master spell
     MasterSpell.def("toString", function () {
         return `${this.label} of ${this.elements.random()}`
@@ -76,25 +82,23 @@ Gauntlet = function (global) {
         }
     })
 
-    MasterSpell.property("name", "").property("base_damage", 0)
-    MasterSpell.property("effect", 0).property("target", null)
-    MasterSpell.property("elements", ["lightning", "fire", "water", "earth", "mysticism"])
-
     // Spellbook will hold all defined spells
-    let Spellbook = gutil.compose(Object.create(null), gutil.ObjectExtensions)
+    let Spellbook = Object.create(gutil.ObjectExtensions)
 
     // Initialization sets up the private spell list array and name set
     Spellbook.def("init", function () {
         _internal(this).contents = []
+        this.load()
         return this
     })
 
-    // Accessor for the spell list
-    Object.defineProperty(Spellbook, "spells", {
-        get: function () {
-            return _internal(this).contents
-        }
-    })
+    /**
+     * Make the Horde object iterable. Yields individual monsters
+     * from the private `horde` Map
+     */
+    Spellbook[Symbol.iterator] = function* () {
+        yield* [..._internal(this).contents]
+    }
 
     // Loads spell properties from JSON file
     Spellbook.def("load", function () {
