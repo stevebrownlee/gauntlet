@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/stevebrownlee/gauntlet) 
+
 # Beware All Ye Who Enter...
 
 If you enter this code, you will discover wonders beyond your wildest imagination, and also the most monstrous horrors of your nightmares.
