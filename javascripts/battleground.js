@@ -27,7 +27,7 @@ Gauntlet = function (global) {
 
             if (combatant.profession.magical) {
                 // Select a spell
-                const spell = Gauntlet.Spellbook.spells.random()
+                const spell = [...Gauntlet.Spellbook].random()
 
                 // Modify its effectiveness based on caster's intelligence
                 modifier = Math.floor(combatant.intelligence / 40)

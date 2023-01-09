@@ -60,7 +60,9 @@ Gauntlet = function (global) {
         _internal(this).weapon_list = []
         return this
     })
-
+    .attr("weapons", function () {
+        return _internal(this).weapon_list
+    }, () => null)
     // Method to load the weapons from the JSON file
     .def("load", function () {
         return fetch("./data/weapons.json")
@@ -75,8 +77,8 @@ Gauntlet = function (global) {
     })
 
     /**
-     * Make the Horde object iterable. Yields individual monsters
-     * from the private `horde` Map
+     * Make the Armory object iterable. Yields individual weapons
+     * from the private `weapon_list` Map
      */
     Armory[Symbol.iterator] = function* () {
         yield* [..._internal(this).weapon_list]
